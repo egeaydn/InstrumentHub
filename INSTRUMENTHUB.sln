@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentHub.Entites", "InstrumentHub.Entitys\InstrumentHub.Entites.csproj", "{31D91CE2-B57F-4C91-BF54-DC1FC3D0D47B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentHub.DataAccess", "InstrumentHub.DataAccess\InstrumentHub.DataAccess.csproj", "{C0371FB0-90FD-4FC7-BAF4-E0B8CFE38EFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{31D91CE2-B57F-4C91-BF54-DC1FC3D0D47B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31D91CE2-B57F-4C91-BF54-DC1FC3D0D47B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31D91CE2-B57F-4C91-BF54-DC1FC3D0D47B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0371FB0-90FD-4FC7-BAF4-E0B8CFE38EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0371FB0-90FD-4FC7-BAF4-E0B8CFE38EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0371FB0-90FD-4FC7-BAF4-E0B8CFE38EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0371FB0-90FD-4FC7-BAF4-E0B8CFE38EFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

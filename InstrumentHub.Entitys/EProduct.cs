@@ -15,6 +15,8 @@ namespace InstrumentHub.Entites
 		public List<Image> Images { get; set; }
 		public List<ProductDivision> ProductDivisions { get; set; }
 		public List<Comment> Comments { get; set; }
+		public string Brand { get; set; }
+		public string Model { get; set; }
 		public decimal Price { get; set; }
 
 		public EProduct()
