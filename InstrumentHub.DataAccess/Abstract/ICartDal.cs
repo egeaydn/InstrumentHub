@@ -9,7 +9,7 @@ namespace InstrumentHub.DataAccess.Abstract
 {
 	public interface ICartDal : IRepository<Cart>
 	{
-		void DeleteCart (int cartId, int productId);
+		void DeleteCart (int cartId, int eproductId);
 		void ClearCart (string cartId);
 		Cart CartByUserId (string userId);
 	}
