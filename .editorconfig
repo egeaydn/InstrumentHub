@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0320: Anonim işlevi statik hale getir
+dotnet_diagnostic.IDE0320.severity = silent

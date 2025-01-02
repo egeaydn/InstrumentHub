@@ -11,6 +11,6 @@ namespace InstrumentHub.DataAccess.Abstract
 	{
 		int GetCountByDivision(string division);
 		EProduct GetProductDetails(int id);
-		List<EProduct> GetEProductsCategory(string category, int screen, int screenSize);
+		List<EProduct> GetEProductsCategory(string division, int screen, int screenSize);
 	}
 }
