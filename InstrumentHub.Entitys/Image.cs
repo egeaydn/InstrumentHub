@@ -12,7 +12,7 @@ namespace InstrumentHub.Entites
 	{
 		public int Id { get; set; }
 		public string? ImageUrl { get; set; }
-		public string EProductId { get; set; }
+		public int EProductId { get; set; }
 		public EProduct EProduct { get; set; }
 	}
 }

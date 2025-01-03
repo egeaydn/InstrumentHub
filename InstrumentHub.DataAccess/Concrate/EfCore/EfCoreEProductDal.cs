@@ -60,5 +60,37 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 					.FirstOrDefault();
 			}
 		}
+
+		public void Update(EProduct entity , int[] divisionid)
+		{
+			using (var context = new DataContext())
+			{
+				var products = context.EProducts.Include(i => i.ProductDivisions).FirstOrDefault(i => i.Id == entity.Id);
+
+				if(products is not null)
+				{
+					context.Images.RemoveRange(context.Images.Where(i => i.EProductId == entity.Id));
+					products.Price = entity.Price;
+					products.Name = entity.Name;
+					products.Description = entity.Description;
+					products.ProductDivisions = divisionid.Select(cartid => new ProductDivision()
+					{
+						EProductId = entity.Id,
+						DivisionId = cartid,
+					}).ToList();
+					products.Images = entity.Images;
+				}
+				context.SaveChanges();
+			}
+		}
+		public void Delete(EProduct entity)
+		{
+			using (var context = new DataContext())
+			{
+				context.Images.RemoveRange(entity.Images);
+				context.EProducts.Remove(entity);
+				context.SaveChanges();
+			}
+		}
 	}
 }

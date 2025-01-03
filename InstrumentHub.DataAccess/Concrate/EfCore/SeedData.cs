@@ -44,38 +44,26 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 
 		private static EProduct[] EProducts =
 	    {
-			new EProduct(){ Name = "Samsung Note 8" , Price = 15000, Images = { new Image() {ImageUrl = "samsung.jpg" },  new Image() {ImageUrl = "samsung2.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "samsung4.jpg" } },Description ="<p>Güzel telefon</p>" },
+			new EProduct(){ Name = "Ashton Keman" , Price = 25400, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "Keman3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
+			new EProduct(){ Name = "Miyazawa Flüt" , Price = 5600, Images = { new Image() {ImageUrl = "Flüt.jpg" },  new Image() {ImageUrl = "Flüt.jpg" }, new Image() {ImageUrl = "Flüt.jpg" }, new Image() {ImageUrl = "Flüt.jpg" } },Description ="<p>Flüt.jpg</p>" },
+			new EProduct(){ Name = "Carlsbro Davul" , Price = 7000, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
+			new EProduct(){ Name = "Yamaha Piano" , Price = 100000, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
+			new EProduct(){ Name = "Yılmaz Sazevi Kısa Sap Bağlama" , Price = 35000, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
+			new EProduct(){ Name = "Gitar-Saz Kelepçesi" , Price = 500, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
+			new EProduct(){ Name = "Acurus Amfi" , Price = 5000, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
+			new EProduct(){ Name = "Ahşap Notalık" , Price = 200, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
 		};
 		private static ProductDivision[] ProductDivisions =
 	   {
 			new ProductDivision(){ EProduct = EProducts[0],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[1],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[2],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[3],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[4],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[5],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[6],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[7],Division=Divisions[1]},
-			new ProductDivision(){ EProduct = EProducts[8],Division=Divisions[1]},
-			new ProductDivision(){ EProduct = EProducts[9],Division=Divisions[1]},
-			new ProductDivision(){ EProduct = EProducts[10],Division=Divisions[0]},
-			new ProductDivision(){ EProduct = EProducts[11],Division=Divisions[2]},
-			new ProductDivision(){ EProduct = EProducts[12],Division=Divisions[2]},
-			new ProductDivision(){ EProduct = EProducts[13],Division=Divisions[2]},
-			new ProductDivision(){ EProduct = EProducts[14],Division=Divisions[2]},
-			new ProductDivision(){ EProduct = EProducts[15],Division=Divisions[1]},
-			new ProductDivision(){ EProduct = EProducts[16],Division=Divisions[1]},
-			new ProductDivision(){ EProduct = EProducts[17],Division=Divisions[1]},
-			new ProductDivision(){ EProduct = EProducts[18],Division=Divisions[1]},
-			new ProductDivision(){ EProduct = EProducts[19],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[20],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[21],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[22],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[23],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[24],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[25],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[26],Division=Divisions[3]},
-			new ProductDivision(){ EProduct = EProducts[27],Division=Divisions[3]}
+			new ProductDivision(){ EProduct = EProducts[1],Division=Divisions[1]},
+			new ProductDivision(){ EProduct = EProducts[2],Division=Divisions[2]},
+			new ProductDivision(){ EProduct = EProducts[3],Division=Divisions[3]},
+			new ProductDivision(){ EProduct = EProducts[4],Division=Divisions[4]},
+			new ProductDivision(){ EProduct = EProducts[5],Division=Divisions[5]},
+			new ProductDivision(){ EProduct = EProducts[6],Division=Divisions[6]},
+			new ProductDivision(){ EProduct = EProducts[7],Division=Divisions[7]},
+			new ProductDivision(){ EProduct = EProducts[8],Division=Divisions[8]},
 		};
 	}
 }

@@ -8,7 +8,7 @@ namespace InstrumentHub.Entites
 {
 	public class ProductDivision
 	{
-		public string DivisionId { get; set; }
+		public int DivisionId { get; set; }
 		public Division Division { get; set; }
 		public int EProductId { get; set; }
 		public EProduct EProduct { get; set; }
