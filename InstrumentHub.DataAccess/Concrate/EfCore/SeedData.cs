@@ -52,6 +52,7 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 			new EProduct(){ Name = "Gitar-Saz Kelepçesi" , Price = 500, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
 			new EProduct(){ Name = "Acurus Amfi" , Price = 5000, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
 			new EProduct(){ Name = "Ahşap Notalık" , Price = 200, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
+			new EProduct(){ Name = "Demir Notalık" , Price = 300, Images = { new Image() {ImageUrl = "Keman.jpg" },  new Image() {ImageUrl = "Keman.jpg" }, new Image() {ImageUrl = "samsung3.jpg" }, new Image() {ImageUrl = "Keman3.jpg" } },Description ="<p>Keman3.jpg</p>" },
 		};
 		private static ProductDivision[] ProductDivisions =
 	   {
