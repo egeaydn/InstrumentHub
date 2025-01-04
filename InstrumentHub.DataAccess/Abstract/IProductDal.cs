@@ -7,10 +7,11 @@ using InstrumentHub.Entites;
 
 namespace InstrumentHub.DataAccess.Abstract
 {
-	public interface IProductDal
+	public interface IProductDal : IRepository<EProduct>
 	{
 		int GetCountByDivision(string division);
 		EProduct GetProductDetails(int id);
-		List<EProduct> GetEProductsCategory(string division, int screen, int screenSize);
+		List<EProduct> GetEProductsDivision(string division, int screen, int screenSize);
+		void Update(EProduct entity, int[] categoryIds);
 	}
 }
