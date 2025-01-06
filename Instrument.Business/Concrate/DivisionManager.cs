@@ -9,7 +9,7 @@ using InstrumentHub.Entites;
 
 namespace Instrument.Business.Concrate
 {
-	internal class DivisionManager : IDivisonsServices
+	public class DivisionManager : IDivisonsServices
 	{
 		private IDivisionDal _divisionDal;
 		public DivisionManager(IDivisionDal categoryDal)
