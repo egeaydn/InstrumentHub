@@ -22,7 +22,7 @@ namespace Instrument.WebUI.Controllers
 			{
 				products = new List<EProduct>();
 			}
-			return View(new EProductListTemplate()
+			return View(new EProductListModel()
 			{
 				EProducts = products
 			});

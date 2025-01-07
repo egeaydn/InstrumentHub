@@ -1,9 +1,9 @@
 ﻿namespace Instrument.WebUI.Models
 {
-	public class CartTemplate
+	public class CartModel
 	{
 		public int CartId { get; set; }
-		public List<CartItemTemplate> CartItems { get; set; }
+		public List<CartItemModel> CartItems { get; set; }
 
 		public Decimal TotalPrice()
 		{
@@ -11,7 +11,7 @@
 		}
 	}
 
-	public class CartItemTemplate
+	public class CartItemModel
 	{
 		public int CartItemId { get; set; }
 		public int Quantity { get; set; }

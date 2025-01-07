@@ -2,7 +2,7 @@
 
 namespace Instrument.WebUI.Models
 {
-	public class OrderListeTemplates
+	public class OrderListeModel
 	{
 		public int id { get; set; }
 		public string OrderNumber { get; set; }
@@ -24,7 +24,7 @@ namespace Instrument.WebUI.Models
 		}
 	}
 
-	public class OrderItemTemplate
+	public class OrderItemCartItemModel
 	{
 		public int OrderItemId { get; set; }
 		public string ProductName { get; set; }

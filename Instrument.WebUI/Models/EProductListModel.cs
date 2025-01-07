@@ -2,13 +2,13 @@
 
 namespace Instrument.WebUI.Models
 {
-	public class EProductListTemplate
+	public class EProductListModel
 	{
 		public PageInformation PageInformation { get; set; }
 		public List<EProduct> EProducts { get; set; }
 		public List<Image> Images { get; set; }
 
-		public EProductListTemplate()
+		public EProductListModel()
 		{
 			Images = new List<Image>();
 		}

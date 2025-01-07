@@ -2,7 +2,7 @@
 
 namespace Instrument.WebUI.Models
 {
-	public class AdminUserTemplate
+	public class AdminUserModel
 	{
 		public string FullName { get; set; }
 		[DataType(DataType.EmailAddress)]

@@ -2,7 +2,7 @@
 
 namespace Instrument.WebUI.Models
 {
-	public class DivisionListTemplate
+	public class DivisionListModel
 	{
 		public List <Division> Divisions { get; set; }
 	}

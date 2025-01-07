@@ -1,6 +1,6 @@
 ﻿namespace Instrument.WebUI.Models
 {
-	public class OrderTemplate
+	public class OrderModel
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
@@ -14,6 +14,6 @@
 		public string? ExparationYear { get; set; }
 		public string? CVV { get; set; }
 		public string OrderNote { get; set; }
-		public CartTemplate CartTemplate { get; set; }
+		public CartModel CartTemplate { get; set; }
 	}
 }

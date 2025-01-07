@@ -2,7 +2,7 @@
 
 namespace Instrument.WebUI.Models
 {
-	public class AccountTemplate : AplicationUser
+	public class AccountModel : AplicationUser
 	{
 		public string FullName { get; set; }
 		public string Password { get; set; }

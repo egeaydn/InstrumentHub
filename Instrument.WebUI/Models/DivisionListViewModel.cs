@@ -2,10 +2,9 @@
 
 namespace Instrument.WebUI.Models
 {
-	public class EProductDetailTemplate
+	public class DivisionListViewModel
 	{
-		public EProduct EProduct { get; set; }
+		public string SelectDivision { get; set; }
 		public List<Division> Divisions { get; set; }
-		public List<Comment> Comments { get; set; }
 	}
 }

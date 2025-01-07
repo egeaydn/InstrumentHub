@@ -3,7 +3,7 @@ using InstrumentHub.Entites;
 
 namespace Instrument.WebUI.Models
 {
-	public class EProductTemplate
+	public class EProductModel
 	{
 		public int Id { get; set; }
 		[Required]
@@ -17,7 +17,7 @@ namespace Instrument.WebUI.Models
 		public decimal Price { get; set; }
 		public List<Division> SelectedDivision { get; set; }
 		public string DivisionId { get; set; }
-		public EProductTemplate()
+		public EProductModel()
 		{
 			Image = new List<Image>();
 		}
