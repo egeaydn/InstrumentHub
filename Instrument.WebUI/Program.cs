@@ -1,14 +1,48 @@
 using Instrument.Business.Abstract;
 using Instrument.Business.Concrate;
+using Instrument.WebUI.Identity;
 using InstrumentHub.DataAccess.Abstract;
 using InstrumentHub.DataAccess.Concrate.EfCore;
 using InstrumentHub.Entites;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
+	options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
+);
+
+builder.Services.AddIdentity<AplicationUser, IdentityRole>()
+				.AddEntityFrameworkStores<ApplicationIdentityDbContext>()
+.AddDefaultTokenProviders();
+
+// Seed Identity
+var userManager = builder.Services.BuildServiceProvider().GetService<UserManager<AplicationUser>>();
+var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<IdentityRole>>();
+
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+	options.Password.RequireNonAlphanumeric = true;
+	options.Password.RequireDigit = true;
+	options.Password.RequireLowercase = true;
+	options.Password.RequireUppercase = true;
+	options.Password.RequiredLength = 6;
+
+	options.Lockout.MaxFailedAccessAttempts = 5;
+	options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+	options.Lockout.AllowedForNewUsers = true;
+
+	options.User.RequireUniqueEmail = true;
+	options.SignIn.RequireConfirmedEmail = true;
+	options.SignIn.RequireConfirmedPhoneNumber = false;
+});
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -20,7 +54,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 	options.Cookie = new CookieBuilder
 	{
 		HttpOnly = true,
-		Name = ".InstrumentHub.Security.Cookie",
+		Name = ".INSTRUMENTHUB.Security.Cookie",
 		SameSite = SameSiteMode.Strict
 	};
 });

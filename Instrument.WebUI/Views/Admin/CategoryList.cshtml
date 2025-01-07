@@ -1,11 +1,12 @@
-﻿@model CategoryListModel
+﻿@using Instrument.WebUI.Models
+@model DivisionListModel
 
 @{
     ViewData["title"] = "Category List";
 }
-<h1>Admin Categories</h1>
+<h1>Admin Divisions</h1>
 <hr />
-@if (Model.Categories.Count > 0)
+@if (Model.Divisions.Count > 0)
 {
     <table class="table">
         <thead>
@@ -16,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Categories)
+            @foreach (var item in Model.Divisions)
             {
                 <tr>
                     <th scope="row">@item.Id</th>
