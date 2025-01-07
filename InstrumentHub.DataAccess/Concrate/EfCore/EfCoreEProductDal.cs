@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Azure;
 using InstrumentHub.DataAccess.Abstract;
 using InstrumentHub.Entites;
 using Microsoft.EntityFrameworkCore;
@@ -90,6 +91,25 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 				context.Images.RemoveRange(entity.Images);
 				context.EProducts.Remove(entity);
 				context.SaveChanges();
+			}
+		}
+
+		public List<EProduct> GetEProductsDivision(string division, int screen, int screenSize)
+		{
+			using (var context = new DataContext())
+			{
+				var products = context.EProducts.Include("Images").AsQueryable();
+
+
+				if (!string.IsNullOrEmpty(division))
+				{
+					products = products
+							  .Include(i => i.ProductDivisions)
+							  .ThenInclude(i => i.Division)
+							  .Where(i => i.ProductDivisions.Any(a => a.Division.CategoryName.ToLower() == division.ToLower()));
+				}
+
+				return products.Skip((screen - 1) * screenSize).Take(screenSize).ToList();
 			}
 		}
 	}

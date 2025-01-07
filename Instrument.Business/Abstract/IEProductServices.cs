@@ -10,12 +10,12 @@ namespace Instrument.Business.Abstract
 	public interface IEProductServices
 	{
 		EProduct GetById(int id);
-		List<EProduct> GetEProductByDivision(string category, int page, int pageSize);
+		List<EProduct> GetEProductByDivision(string division, int page, int pageSize);
 		List<EProduct> GetAll();
 		EProduct GetEProductDetail(int id);
 		void Create(EProduct entity);
 		void Update(EProduct entity);
 		void Delete(EProduct entity);
-		int GetCountByDivision(string category);
+		int GetCountByDivision(string division);
 	}
 }

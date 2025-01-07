@@ -43,9 +43,14 @@ namespace Instrument.Business.Concrate
 			return _eproductDal.GetCountByDivision(category);
 		}
 
-		public List<EProduct> GetEProductByDivision(string category, int page, int pageSize)
+		public int GetCountByDivision(string division)
 		{
-			return _eproductDal.GetEProductsDivision(category, page, pageSize);
+			return _eproductDal.GetCountByDivision(division);
+		}
+
+		public List<EProduct> GetEProductByDivision(string division, int page, int pageSize)
+		{
+			return _eproductDal.GetEProductsDivision(division, page, pageSize);
 		}
 
 		public EProduct GetEProductDetail(int id)

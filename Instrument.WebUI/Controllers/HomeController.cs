@@ -1,32 +1,32 @@
 using System.Diagnostics;
+using Instrument.Business.Abstract;
 using Instrument.WebUI.Models;
+using InstrumentHub.Entites;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Instrument.WebUI.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
+		IEProductServices _productServices;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(IEProductServices productServices)
 		{
-			_logger = logger;
+			_productServices = productServices;
 		}
-
 		public IActionResult Index()
 		{
-			return View();
+			var products = _productServices.GetAll();
+
+			if (products == null || !products.Any())
+			{
+				products = new List<EProduct>();
+			}
+			return View(new EProductListTemplate()
+			{
+				EProducts = products
+			});
 		}
 
-		public IActionResult Privacy()
-		{
-			return View();
-		}
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-		}
 	}
 }
