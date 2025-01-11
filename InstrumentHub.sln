@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentHub.DataAccess", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instrument.Business", "Instrument.Business\Instrument.Business.csproj", "{84003665-B11A-4011-B85E-054E12583C81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instrument.WebUI", "Instrument.WebUI\Instrument.WebUI.csproj", "{3330D44E-B7D8-4250-9B3F-BEDFAC9DCF98}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{84003665-B11A-4011-B85E-054E12583C81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84003665-B11A-4011-B85E-054E12583C81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84003665-B11A-4011-B85E-054E12583C81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3330D44E-B7D8-4250-9B3F-BEDFAC9DCF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3330D44E-B7D8-4250-9B3F-BEDFAC9DCF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3330D44E-B7D8-4250-9B3F-BEDFAC9DCF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3330D44E-B7D8-4250-9B3F-BEDFAC9DCF98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
