@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Instrument.WebUI.Identity
@@ -7,6 +7,8 @@ namespace Instrument.WebUI.Identity
 	{
 		public ApplicationIdentityDbContext(DbContextOptions<ApplicationIdentityDbContext> options) : base(options)
 		{
+
 		}
 	}
 }
+

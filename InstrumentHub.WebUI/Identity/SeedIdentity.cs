@@ -17,9 +17,9 @@ namespace Instrument.WebUI.Identity
 
 				var user = new AplicationUser
 				{
-					Username = username,
+					UserName = username,
 					Email = email,
-					FullName = "Admin User",
+					FullName = "Ege Aydın",
 					EmailConfirmed = true
 				};
 

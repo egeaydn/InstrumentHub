@@ -1,6 +1,8 @@
-﻿namespace Instrument.WebUI.Identity
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Instrument.WebUI.Identity
 {
-	public abstract class AplicationUser
+	public  class AplicationUser : IdentityUser
 	{
 		public string FullName { get; set; }
 	}

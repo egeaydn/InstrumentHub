@@ -12,7 +12,7 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"Server=DESKTOP-L027AII\SQLEXPRESS;Database=INSTRUMENTHUB;uid=sa;pwd=1453;TrustServerCertificate=True");
+			optionsBuilder.UseSqlServer(@"Server=DESKTOP-L027AII\SQLEXPRESS;Database=INSTRUMENTHUB;uid=sa;pwd=1;TrustServerCertificate=True");
 		}
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

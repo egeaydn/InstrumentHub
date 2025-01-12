@@ -16,7 +16,7 @@ namespace Instrument.WebUI.Models
 		public string Phone { get; set; }
 		public string Email { get; set; }
 		public string OrderNote { get; set; }
-		public List<OrderItemTemplate> OrderItems { get; set; }
+		public List<OrderItemCartItemModel> OrderItems { get; set; }
 
 		public decimal TotalPrice()
 		{
