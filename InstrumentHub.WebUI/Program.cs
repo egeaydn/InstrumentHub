@@ -93,8 +93,54 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
+
+	endpoints.MapControllerRoute(
+		name: "products",
+		pattern: "products/{category}",
+		defaults: new { controller = "Shop", action = "List" }
+	);
+	endpoints.MapControllerRoute(
+		name: "adminProducts",
+		pattern: "admin/products",
+		defaults: new { controller = "Admin", action = "ProductList" }
+	);
+	endpoints.MapControllerRoute(
+		name: "adminProducts",
+		pattern: "admin/products/{id}",
+		defaults: new { controller = "Admin", action = "EditProduct" }
+	);
+	endpoints.MapControllerRoute(
+		 name: "adminProducts",
+		 pattern: "admin/category",
+		 defaults: new { controller = "Admin", action = "CategoryList" }
+	);
+	endpoints.MapControllerRoute(
+		name: "adminProducts",
+		pattern: "admin/categories/{id}",
+		defaults: new { controller = "Admin", action = "EditCategory" }
+	);
+	endpoints.MapControllerRoute(
+		name: "cart",
+		pattern: "cart",
+		defaults: new { controller = "Cart", action = "Index" }
+	);
+	endpoints.MapControllerRoute(
+		name: "checkout",
+		pattern: "checkout",
+		defaults: new { controller = "Cart", action = "Checkout" }
+	);
+	endpoints.MapControllerRoute(
+	   name: "orders",
+	   pattern: "orders",
+	   defaults: new { controller = "Cart", action = "GetOrders" }
+   );
+
+}
+);
+
+SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
 
 app.Run();
