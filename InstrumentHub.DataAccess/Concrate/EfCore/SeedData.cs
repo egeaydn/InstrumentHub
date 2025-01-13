@@ -64,7 +64,7 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 			new ProductDivision(){ EProduct = EProducts[5],Division=Divisions[5]},
 			new ProductDivision(){ EProduct = EProducts[6],Division=Divisions[6]},
 			new ProductDivision(){ EProduct = EProducts[7],Division=Divisions[7]},
-			new ProductDivision(){ EProduct = EProducts[8],Division=Divisions[8]},
+			new ProductDivision(){ EProduct = EProducts[8],Division=Divisions[7]},
 		};
 	}
 }

@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Instrument.WebUI.Models
+@using InstrumentHub.Entites
+@model EProductListModel
+
+@{
+	ViewBag.Title = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row d-flex justify-content-center">
+    <div class=col-md-12 "d-flex justify-content-center">
+        <partial name="_slider" />
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-3">
+            @await Component.InvokeAsync("CategoryList")
+        </div>
+        <div class="col-md-9">
+
+            <div class="row">
+                @if (Model.EProducts != null && Model.EProducts.Count > 0)
+                {
+                    @foreach (EProduct product in Model.EProducts)
+                    {
+                        <partial name="_products" for="@product" />
+                    }
+                }
+                else
+                {
+                    <p>Ürün Bulanamadı.</p>
+                }
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -21,7 +21,6 @@ builder.Services.AddIdentity<AplicationUser, IdentityRole>()
 // Seed Identity
 var userManager = builder.Services.BuildServiceProvider().GetService<UserManager<AplicationUser>>();
 var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<IdentityRole>>();
-var app = builder.Build();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -39,6 +38,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 	options.SignIn.RequireConfirmedEmail = true;
 	options.SignIn.RequireConfirmedPhoneNumber = false;
 });
+
 
 // Cookie Options
 builder.Services.ConfigureApplicationCookie(options =>
@@ -69,6 +69,8 @@ builder.Services.AddScoped<IOrderServices, OrderManager>();
 
 builder.Services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Latest);
 
+var app = builder.Build();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -85,13 +87,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication(); // kimlik doðrulama
 app.UseAuthorization(); // yetkilendirme
 app.UseRouting();
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
