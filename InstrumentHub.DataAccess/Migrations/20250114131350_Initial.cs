@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InstrumentHub.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class INSTRUMENTHUB : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -138,15 +138,14 @@ namespace InstrumentHub.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EProductId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EProductId1 = table.Column<int>(type: "int", nullable: false)
+                    EProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ImagesTable", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ImagesTable_EProducts_EProductId1",
-                        column: x => x.EProductId1,
+                        name: "FK_ImagesTable_EProducts_EProductId",
+                        column: x => x.EProductId,
                         principalTable: "EProducts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -156,16 +155,15 @@ namespace InstrumentHub.DataAccess.Migrations
                 name: "ProductDivision",
                 columns: table => new
                 {
-                    DivisionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EProductId = table.Column<int>(type: "int", nullable: false),
-                    DivisionId1 = table.Column<int>(type: "int", nullable: false)
+                    DivisionId = table.Column<int>(type: "int", nullable: false),
+                    EProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductDivision", x => new { x.EProductId, x.DivisionId });
                     table.ForeignKey(
-                        name: "FK_ProductDivision_DivisionTable_DivisionId1",
-                        column: x => x.DivisionId1,
+                        name: "FK_ProductDivision_DivisionTable_DivisionId",
+                        column: x => x.DivisionId,
                         principalTable: "DivisionTable",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -221,9 +219,9 @@ namespace InstrumentHub.DataAccess.Migrations
                 column: "EProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImagesTable_EProductId1",
+                name: "IX_ImagesTable_EProductId",
                 table: "ImagesTable",
-                column: "EProductId1");
+                column: "EProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItem_EProductId",
@@ -236,9 +234,9 @@ namespace InstrumentHub.DataAccess.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductDivision_DivisionId1",
+                name: "IX_ProductDivision_DivisionId",
                 table: "ProductDivision",
-                column: "DivisionId1");
+                column: "DivisionId");
         }
 
         /// <inheritdoc />

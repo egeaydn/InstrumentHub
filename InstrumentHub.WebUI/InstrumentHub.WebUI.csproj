@@ -27,4 +27,8 @@
     <ProjectReference Include="..\InstrumentHub.Entitys\InstrumentHub.Entites.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 </Project>

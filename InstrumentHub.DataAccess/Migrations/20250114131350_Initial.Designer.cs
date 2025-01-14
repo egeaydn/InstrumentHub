@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstrumentHub.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241231195237_INSTRUMENTHUB")]
-    partial class INSTRUMENTHUB
+    [Migration("20250114131350_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,11 +157,7 @@ namespace InstrumentHub.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("EProductId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EProductId1")
+                    b.Property<int>("EProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
@@ -169,7 +165,7 @@ namespace InstrumentHub.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EProductId1");
+                    b.HasIndex("EProductId");
 
                     b.ToTable("ImagesTable");
                 });
@@ -278,15 +274,12 @@ namespace InstrumentHub.DataAccess.Migrations
                     b.Property<int>("EProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DivisionId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("DivisionId1")
+                    b.Property<int>("DivisionId")
                         .HasColumnType("int");
 
                     b.HasKey("EProductId", "DivisionId");
 
-                    b.HasIndex("DivisionId1");
+                    b.HasIndex("DivisionId");
 
                     b.ToTable("ProductDivision");
                 });
@@ -325,7 +318,7 @@ namespace InstrumentHub.DataAccess.Migrations
                 {
                     b.HasOne("InstrumentHub.Entites.EProduct", "EProduct")
                         .WithMany("Images")
-                        .HasForeignKey("EProductId1")
+                        .HasForeignKey("EProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -355,7 +348,7 @@ namespace InstrumentHub.DataAccess.Migrations
                 {
                     b.HasOne("InstrumentHub.Entites.Division", "Division")
                         .WithMany("ProductDivisions")
-                        .HasForeignKey("DivisionId1")
+                        .HasForeignKey("DivisionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
