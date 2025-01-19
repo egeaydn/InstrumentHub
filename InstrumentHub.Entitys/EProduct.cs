@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace InstrumentHub.Entites
 		public List<Comment> Comments { get; set; }
 		public string Brand { get; set; }
 		public string Model { get; set; }
+		[Range(0, double.MaxValue, ErrorMessage = "Fiyat geçerli bir değer olmalıdır. Lütfen pozitif bir sayı giriniz.")]
 		public decimal Price { get; set; }
 
 		public EProduct()

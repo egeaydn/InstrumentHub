@@ -79,7 +79,7 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
-SeedData.Seed();
+//SeedData.Seed();
 
 app.UseStaticFiles();
 app.CustomStaticFiles(); // node_modules => modules 
@@ -136,6 +136,6 @@ app.UseEndpoints(endpoints =>
 }
 );
 
-SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
+//SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
 
 app.Run();
