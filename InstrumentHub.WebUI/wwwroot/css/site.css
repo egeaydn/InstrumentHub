@@ -1,22 +1,124 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+.pageContainer {
+    margin-top: 80px
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.carousel-control-next {
+    right: -65px !important;
+}
+
+.carousel-control-prev {
+    left: -65px !important;
+}
+
+.card > .card-body {
+    height: 150px
+}
+
+.card > img {
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    margin-top: 5px;
+}
+
+.card > .card-body > .card-title {
+    margin-bottom: 10px
+}
+
+    .card > .card-body > .card-title > a {
+        color: #0d6efd;
+        text-decoration: none;
+        font-size: 18px
+    }
+
+.card > .card-body > .price-box > .price {
+    background-color: #0d6efd !important;
+    color: #f2f2f2 !important;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 10px !important;
+    text-align: right !important
+}
+
+.product-detail {
+    border: 3px solid #f2f2f2;
+    border-radius: 10px;
+    padding: 15px
+}
+
+.quantity {
+    max-width: 75px !important;
+    border-radius: 10px !important
+}
+
+.cart-group {
+    width: 350px !important;
+    display: flex;
+    align-items: center
+}
+
+.top-image {
+    mix-blend-mode: multiply
+}
+
+.thumb-image {
+    aspect-ratio: 6/5;
+    object-fit: contain
+}
+
+.editableComment {
+    display: inline-block;
+    border: 1px solid black;
+    width: 400px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.validation-box {
+    margin: 0 auto;
+}
+
+.row > .validation-box > .validation > ul > li {
+    list-style: none;
+    font-weight: 700
+}
+
+@media only screen and (max-width : 667px) {
+    .carousel > .carousel-inner > .carousel-item > img {
+        width: 100%;
+    }
+}
+
+.login-register {
+    justify-content: end
+}
+
+@media only screen and (max-width : 667px) {
+    .login-register {
+        justify-content: start
+    }
 }
