@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InstrumentHub.WebUI.ViewComponents
 {
-	public class DivisionListViewComponent : ViewComponent
+	public class CategoryListViewComponent : ViewComponent
 	{
 		private IDivisonsServices _divisionService;
 
-		public DivisionListViewComponent(IDivisonsServices divisionService)
+		public CategoryListViewComponent(IDivisonsServices divisionService)
 		{
 			_divisionService = divisionService;
 		}
