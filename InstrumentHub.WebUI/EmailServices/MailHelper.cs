@@ -17,7 +17,7 @@ namespace InstrumentHub.WebUI.EmailServices
 			try
 			{
 				var message = new MailMessage();
-				message.From = new MailAddress("instrumenthubmailservices@gmail.com");
+				message.From = new MailAddress("ucuncubinyilakademimailservice@gmail.com");
 
 				to.ForEach(x =>
 				{
@@ -31,7 +31,7 @@ namespace InstrumentHub.WebUI.EmailServices
 				using (var smtp = new SmtpClient("smtp.gmail.com", 587))
 				{
 					smtp.EnableSsl = true;
-					smtp.Credentials = new NetworkCredential("instrumenthubmailservices@gmail.com", "HJF97-A3ECM-WDF6E-HSZFJ-RRFXZ");
+					smtp.Credentials = new NetworkCredential("ucuncubinyilakademimailservice@gmail.com", "wdpy prpp pekv nfll");
 					smtp.UseDefaultCredentials = false;
 					smtp.Send(message);
 					result = true;

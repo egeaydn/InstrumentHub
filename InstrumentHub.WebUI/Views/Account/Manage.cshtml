@@ -1,0 +1,43 @@
+﻿@using Instrument.WebUI.Models
+@model AccountModel
+@{
+    ViewData["Title"] = "Manage Account";
+}
+@section Scripts {
+    <script src="~/modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-3 validation-box">
+            <div asp-validation-summary="ModelOnly" class="text-danger validation"></div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-3">
+            <form asp-action="Manage" asp-controller="Account" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <div class="form-group mb-2">
+                    <strong><label for="FullName">Full Name</label></strong>
+                    <input asp-for="FullName" class="form-control" id="FullName" name="FullName" value="@Model.FullName" placeholder="FullName" required />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <strong><label for="UserName">User Name</label></strong>
+                    <input asp-for="UserName" class="form-control" id="UserName" name="UserName" value="@Model.UserName" placeholder="UserName" required />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <strong><label for="Email">Email</label></strong>
+                    <input asp-for="Email" class="form-control" id="Email" name="Email" value="@Model.Email" placeholder="Email" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-4">
+                    <input type="submit" value="Edit Register" class="btn btn-danger" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
