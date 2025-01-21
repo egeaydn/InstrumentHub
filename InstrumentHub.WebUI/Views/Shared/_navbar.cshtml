@@ -18,13 +18,13 @@
                         @if (User.IsInRole("admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" asp-controller="Admin" asp-action="CreateProduct">Add Product</a>
+                                <a class="nav-link" aria-current="page" asp-controller="Admin" asp-action="CreateEProduct">Add Product</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="/admin/products">Admin Products</a>
+                                <a class="nav-link" aria-current="page" asp-controller="Admin" asp-action="EProductList">Admin Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" asp-controller="Admin" asp-action="CreateCategory">Create Category</a>
+                                <a class="nav-link" aria-current="page" asp-controller="Admin" asp-action="CreateDivision">Create Category</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" asp-controller="Admin" asp-action="DivisionList">Category List</a>

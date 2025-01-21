@@ -79,7 +79,6 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
-//SeedData.Seed();
 
 app.UseStaticFiles();
 app.CustomStaticFiles(); // node_modules => modules 
@@ -100,7 +99,7 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute(
 		name: "adminProducts",
 		pattern: "admin/products",
-		defaults: new { controller = "Admin", action = "ProductList" }
+		defaults: new { controller = "Admin", action = "EProductList" }
 	);
 	endpoints.MapControllerRoute(
 		name: "adminProducts",
@@ -136,6 +135,6 @@ app.UseEndpoints(endpoints =>
 }
 );
 
-//SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
+SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
 
 app.Run();

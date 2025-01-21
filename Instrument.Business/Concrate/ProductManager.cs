@@ -58,9 +58,10 @@ namespace Instrument.Business.Concrate
 			return _eproductDal.GetProductDetails(id);
 		}
 
-		public void Update(EProduct entity)
+		public void Update(EProduct entity, int[] divisionIds)
 		{
-			_eproductDal.Update(entity);
+			_eproductDal.Update(entity, divisionIds);
 		}
+
 	}
 }

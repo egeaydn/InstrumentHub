@@ -14,7 +14,7 @@ namespace Instrument.Business.Abstract
 		List<EProduct> GetAll();
 		EProduct GetEProductDetail(int id);
 		void Create(EProduct entity);
-		void Update(EProduct entity);
+		void Update(EProduct entity, int[] divisionIds);
 		void Delete(EProduct entity);
 		int GetCountByDivision(string division);
 	}
