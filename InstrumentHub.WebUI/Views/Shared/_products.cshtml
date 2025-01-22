@@ -8,6 +8,7 @@
         }
         @if(image != null)
         {
+
             <img src="~/img/@image.ImageUrl" />
         }
         else
@@ -23,6 +24,11 @@
             <div class="price-box d-flex justify-content-end">
                 <small class="text-muted price">
                     @Model.Price
+                </small>
+            </div>
+            <div class="price-box d-flex justify-content-end">
+                <small class="text-muted">
+                    @Model.Brand
                 </small>
             </div>
           

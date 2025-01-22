@@ -8,24 +8,26 @@ namespace InstrumentHub.WebUI.Controllers
 {
 	public class HomeController : Controller
 	{
-		private IEProductServices _eproductServices;
+		private IEProductServices _productServices;
 
-		public HomeController(IEProductServices eProductServices)
+		public HomeController(IEProductServices productServices)
 		{
-			_eproductServices = eProductServices;
+			_productServices = productServices;
 		}
 
 		public IActionResult Index()
 		{
-			var eProducts = _eproductServices.GetAll();
+			var products = _productServices.GetAll();
 
-			if (eProducts == null || eProducts.Any() )
+
+			if (products == null || !products.Any())
 			{
-				eProducts = new List<EProduct>();
+				products = new List<EProduct>();
 			}
+
 			return View(new EProductListModel()
 			{
-				EProducts = eProducts,
+				EProducts = products,
 			});
 		}
 	}
