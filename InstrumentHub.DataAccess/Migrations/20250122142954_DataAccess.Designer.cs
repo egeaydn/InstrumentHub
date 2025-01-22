@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstrumentHub.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250114131350_Initial")]
-    partial class Initial
+    [Migration("20250122142954_DataAccess")]
+    partial class DataAccess
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,13 +127,6 @@ namespace InstrumentHub.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

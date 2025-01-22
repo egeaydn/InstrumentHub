@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InstrumentHub.WebUI.Migrations
 {
     /// <inheritdoc />
-    public partial class Instrument : Migration
+    public partial class newWeb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

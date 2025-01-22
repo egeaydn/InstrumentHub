@@ -12,12 +12,10 @@ namespace InstrumentHub.Entites
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public int EProductId { get; set; }
 		public List<Image> Images { get; set; }
 		public List<ProductDivision> ProductDivisions { get; set; }
 		public List<Comment> Comments { get; set; }
 		public string Brand { get; set; }
-		public string Model { get; set; }
 		[Range(0, double.MaxValue, ErrorMessage = "Fiyat geçerli bir değer olmalıdır. Lütfen pozitif bir sayı giriniz.")]
 		public decimal Price { get; set; }
 

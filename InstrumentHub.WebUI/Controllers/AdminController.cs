@@ -45,7 +45,7 @@ namespace InstrumentHub.WebUI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateEProduct(EProductModel model, List<IFormFile> files)
 		{
-			ModelState.Remove("SelectedCategories");
+			ModelState.Remove("SelectedDivision");
 
 			if (ModelState.IsValid)
 			{
@@ -62,7 +62,8 @@ namespace InstrumentHub.WebUI.Controllers
 				{
 					Name = model.Name,
 					Description = model.Description,
-					Price = model.Price
+					Price = model.Price,
+					Brand = model.Brand,
 				};
 
 				if (files.Count > 0 && files != null)
@@ -93,7 +94,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 				_productService.Create(entity);
 
-				return RedirectToAction("ProductList");
+				return RedirectToAction("EProductList");
 			}
 
 			ViewBag.Divisions = _categoryService.GetAll().Select(x => new SelectListItem { Text = x.CategoryName, Value = x.Id.ToString() });
@@ -104,7 +105,7 @@ namespace InstrumentHub.WebUI.Controllers
 		}
 
 
-		public IActionResult EditProduct(int id)
+		public IActionResult EditEProduct(int id)
 		{
 			if (id == null)
 			{
@@ -133,7 +134,7 @@ namespace InstrumentHub.WebUI.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> EditProduct(EProductModel model, List<IFormFile> files, int[] divisionIds)
+		public async Task<IActionResult> EditEProduct(EProductModel model, List<IFormFile> files, int[] divisionIds)
 		{
 			var entity = _productService.GetById(model.Id);
 
@@ -182,12 +183,12 @@ namespace InstrumentHub.WebUI.Controllers
 			return RedirectToAction("ProductList");
 		}
 
-		public IActionResult CategoryList()
+		public IActionResult DivisionList()
 		{
 			return View(new DivisionListModel() { Divisions = _categoryService.GetAll() });
 		}
 
-		public IActionResult EditCategory(int? id)
+		public IActionResult EditDivisions(int? id)
 		{
 			var entity = _categoryService.GetByWithProducts(id.Value);
 
@@ -203,7 +204,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 
 		[HttpPost]
-		public IActionResult EditCategory(DivisionModel model)
+		public IActionResult EditDivisions(DivisionModel model)
 		{
 			var entity = _categoryService.GetById(model.Id);
 
@@ -227,14 +228,14 @@ namespace InstrumentHub.WebUI.Controllers
 			return RedirectToAction("CategoryList");
 		}
 
-		public IActionResult CreateCategory()
+		public IActionResult CreateDivisions()
 		{
 			return View(new DivisionModel());
 		}
 
 
 		[HttpPost]
-		public IActionResult CreateCategory(DivisionModel model)
+		public IActionResult CreateDivisions(DivisionModel model)
 		{
 			var entity = new Division()
 			{

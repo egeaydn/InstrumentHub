@@ -104,12 +104,12 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute(
 		name: "adminProducts",
 		pattern: "admin/products/{id}",
-		defaults: new { controller = "Admin", action = "EditProduct" }
+		defaults: new { controller = "Admin", action = "EditEProduct" }
 	);
 	endpoints.MapControllerRoute(
 		 name: "adminProducts",
 		 pattern: "admin/category",
-		 defaults: new { controller = "Admin", action = "CategoryList" }
+		 defaults: new { controller = "Admin", action = "DivisionList" }
 	);
 	endpoints.MapControllerRoute(
 		name: "adminProducts",
@@ -135,6 +135,6 @@ app.UseEndpoints(endpoints =>
 }
 );
 
-SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
+//SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
 
 app.Run();

@@ -48,6 +48,11 @@
                 <span asp-validation-for="Price"></span>
             </div>
             <div class="col-md-9 offset-md-3 mb-3">
+                <label asp-for="Brand" class="form-label"></label>
+                <input asp-for="Brand" class="form-control" type="text" placeholder="Marka Giriniz"/>
+                <span asp-validation-for="Brand"></span>
+            </div>
+            <div class="col-md-9 offset-md-3 mb-3">
                 <label asp-for="DivisionId" class="form-label">Kategoriler</label>
                 <select class="form-control" asp-for="DivisionId" asp-items="@ViewBag.Divisions" placeholder="Division">
                     <option value="-1">Lütfen Kategori Seçiniz</option>
