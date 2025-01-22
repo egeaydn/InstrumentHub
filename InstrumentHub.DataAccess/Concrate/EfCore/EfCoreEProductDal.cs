@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Azure;
@@ -110,6 +111,16 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 				}
 
 				return products.Skip((screen - 1) * screenSize).Take(screenSize).ToList();
+			}
+		}
+		public override List<EProduct> GetAll(Expression<Func<EProduct, bool>> filter = null)
+		{
+			using (var context = new DataContext())
+			{
+				return filter == null
+						? context.EProducts.Include("Images").ToList()
+						: context.EProducts.Include("Images").Where(filter).ToList();
+
 			}
 		}
 	}
