@@ -167,7 +167,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 			_productService.Update(entity,divisionIds);
 
-			return RedirectToAction("ProductList");
+			return RedirectToAction("EProductList");
 		}
 
 		[HttpPost]
@@ -216,7 +216,7 @@ namespace InstrumentHub.WebUI.Controllers
 			entity.CategoryName = model.Name;
 			_categoryService.Update(entity);
 
-			return RedirectToAction("CategoryList");
+			return RedirectToAction("DivisionList");
 		}
 
 		[HttpPost]
@@ -225,7 +225,7 @@ namespace InstrumentHub.WebUI.Controllers
 			var entity = _categoryService.GetById(categoryId);
 			_categoryService.Delete(entity);
 
-			return RedirectToAction("CategoryList");
+			return RedirectToAction("DivisionList");
 		}
 
 		public IActionResult CreateDivisions()
@@ -244,7 +244,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 			_categoryService.Create(entity);
 
-			return RedirectToAction("CategoryList");
+			return RedirectToAction("DivisionList");
 		}
 	}
 }
