@@ -1,9 +1,14 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+﻿<link rel="stylesheet" href="~/css/navbar.css">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container">
+        <!-- Marka -->
         <a class="navbar-brand fw-bold" href="#">InstrumentHub</a>
+        <!-- Toggler -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Menü -->
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <!-- Sol Menü -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -21,7 +26,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Admin Panel
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="adminDropdown">
                                 <li><a class="dropdown-item" asp-controller="Admin" asp-action="CreateEProduct">Add Product</a></li>
                                 <li><a class="dropdown-item" asp-controller="Admin" asp-action="EProductList">Admin Products</a></li>
                                 <li><a class="dropdown-item" asp-controller="Admin" asp-action="CreateDivisions">Create Category</a></li>
@@ -64,3 +69,4 @@
         </div>
     </div>
 </nav>
+

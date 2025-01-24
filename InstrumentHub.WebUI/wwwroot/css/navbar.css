@@ -1,0 +1,82 @@
+﻿/* Navbar genel tasarımı */
+.navbar {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+    /* Navbar linkleri */
+    .navbar .nav-link {
+        color: #ffffff;
+        text-decoration: none; /* Alt çizgiyi kaldır */
+        padding: 8px 15px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+        /* Navbar link hover ve aktif durum */
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2); /* Hafif bir arka plan efekti */
+            color: #f8d210; /* Sarıya dönük vurgu rengi */
+            border-radius: 5px; /* Hafif yuvarlatma */
+        }
+
+    /* Dropdown menü tasarımı */
+    .navbar .dropdown-menu {
+        background-color: #343a40; /* Daha koyu arka plan */
+        border: none;
+        border-radius: 5px;
+    }
+
+    .navbar .dropdown-item {
+        color: #ffffff;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .navbar .dropdown-item:hover {
+            background-color: #495057;
+            color: #f8d210;
+        }
+
+/* Navbar toggler (mobil cihazlar için) */
+.navbar-toggler {
+    border: none;
+    background-color: #f8d210;
+}
+
+.navbar-toggler-icon {
+    background-image: none;
+    width: 24px;
+    height: 2px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+}
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: #ffffff;
+        left: 0;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-toggler-icon::before {
+        top: -8px;
+    }
+
+    .navbar-toggler-icon::after {
+        top: 8px;
+    }
+
+/* Sağ ve sol menülerin boşlukları */
+.navbar .navbar-nav {
+    gap: 10px; /* Menü elemanları arasında boşluk */
+}
+
+    /* Sağ menü elemanlarına hover efekti */
+    .navbar .navbar-nav.ms-auto .nav-link {
+        font-weight: bold;
+    }
