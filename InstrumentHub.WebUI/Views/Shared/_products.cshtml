@@ -3,32 +3,27 @@
 <link rel="stylesheet" href="~/css/product.css">
 <div class="col-md-4 col-lg-3 mt-3">
     <div class="card product-card shadow-sm">
-        <!-- Ürün Resmi -->
-        <div class="card-img-wrapper">
-            <img src="~/img/@(Model.Images.FirstOrDefault()?.ImageUrl ?? "placeholder.jpg")"
-                 class="card-img-top"
-                 alt="@Model.Name">
-        </div>
-        <!-- Kart Gövdesi -->
-        <div class="card-body text-center">
-            <h5 class="product-title">
-                <a asp-controller="Shop" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none text-dark">
-                    @Model.Name
-                </a>
-            </h5>
-            <p class="product-brand">@Model.Brand</p>
-            <div class="product-price">
-                <span>@Model.Price ₺</span>
+        <!-- Tıklanabilir Alan -->
+        <a asp-controller="Shop" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
+            <!-- Ürün Resmi -->
+            <div class="card-img-wrapper">
+                <img src="~/img/@(Model.Images.FirstOrDefault()?.ImageUrl ?? "placeholder.jpg")"
+                     class="card-img-top"
+                     alt="@Model.Name">
             </div>
-        </div>
-        <!-- Kart Alt Bölümü -->
+            <!-- Kart Gövdesi -->
+            <div class="card-body text-center">
+                <h5 class="product-title text-dark">
+                    @Model.Name
+                </h5>
+                <p class="product-brand">@Model.Brand</p>
+                <div class="product-price">
+                    <span>@Model.Price ₺</span>
+                </div>
+            </div>
+        </a>
+        <!-- Kart Alt Bölümü (Tıklanamaz Alan) -->
         <div class="card-footer d-flex justify-content-between align-items-center bg-light">
-            <a class="btn btn-outline-primary btn-sm"
-               asp-controller="Shop"
-               asp-action="Details"
-               asp-route-id="@Model.Id">
-                <i class="bi bi-info-circle"></i> Details
-            </a>
             @if (User.Identity.IsAuthenticated && !User.IsInRole("admin"))
             {
                 <form asp-controller="Cart" asp-action="AddToCart" method="POST" class="d-inline">
