@@ -24,7 +24,7 @@ namespace InstrumentHub.WebUI.Controllers
 			_roleManager = roleManager;
 		}
 
-		
+		[Route("admin/products")]
 		public IActionResult EProductList()
 		{
 			return View(
@@ -180,7 +180,7 @@ namespace InstrumentHub.WebUI.Controllers
 				_productService.Delete(product);
 			}
 
-			return RedirectToAction("ProductList");
+			return RedirectToAction("EProductList");
 		}
 
 		public IActionResult DivisionList()
@@ -188,19 +188,31 @@ namespace InstrumentHub.WebUI.Controllers
 			return View(new DivisionListModel() { Divisions = _categoryService.GetAll() });
 		}
 
+
+		[Route("admin/editdivision/{id?}")]
 		public IActionResult EditDivisions(int? id)
 		{
+			if (!id.HasValue)
+			{
+				return NotFound();
+			}
+
 			var entity = _categoryService.GetByWithProducts(id.Value);
+			if (entity == null)
+			{
+				return NotFound();
+			}
 
 			return View(
-					new DivisionModel()
-					{
-						Id = entity.Id,
-						Name = entity.CategoryName,
-						EProducts = entity.ProductDivisions.Select(i => i.EProduct).ToList()
-					}
-				);
+				new DivisionModel()
+				{
+					Id = entity.Id,
+					Name = entity.CategoryName,
+					EProducts = entity.ProductDivisions.Select(i => i.EProduct).ToList()
+				}
+			);
 		}
+
 
 
 		[HttpPost]
