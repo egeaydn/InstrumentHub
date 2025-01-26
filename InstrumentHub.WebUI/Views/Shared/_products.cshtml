@@ -1,6 +1,7 @@
 ﻿@using InstrumentHub.Entites
 @model EProduct
 <link rel="stylesheet" href="~/css/product.css">
+
 <div class="col-md-4 col-lg-3 mt-3">
     <div class="card product-card shadow-sm">
         <!-- Tıklanabilir Alan -->
@@ -26,7 +27,7 @@
         <div class="card-footer d-flex justify-content-between align-items-center bg-light">
             @if (User.Identity.IsAuthenticated && !User.IsInRole("admin"))
             {
-                <form asp-controller="Cart" asp-action="AddToCart" method="POST" class="d-inline">
+                <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
                     <input type="hidden" name="productId" value="@Model.Id" />
                     <input type="hidden" name="quantity" value="1" />
                     <button type="submit" class="btn btn-success btn-sm">
