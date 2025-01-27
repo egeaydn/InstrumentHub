@@ -1,0 +1,38 @@
+﻿.category-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Kutu arası mesafe */
+    margin-bottom: 20px; /* Ürünler ile arasındaki mesafe */
+    flex-wrap: wrap; /* Mobil uyumlu olmasını sağlar */
+}
+
+.category-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+    .category-box:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .category-box.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+@media (max-width: 768px) {
+    .category-box {
+        padding: 12px 25px;
+    }
+}

@@ -1,18 +1,14 @@
 ﻿@using Instrument.WebUI.Models
 @model DivisionListViewModel
 
-<ul class="list-group ">
-    <a href="/products/all">
-        <li class="list-group-item list-group-item-action">
-            <strong>All Products</strong>
-        </li>
-    </a>
+<link href="~/css/default.css" rel="stylesheet" />
+<div class="category-container">
+   
     @foreach (var category in Model.Divisions)
     {
-       <a asp-controller="Shop" asp-action="List" asp-route-category="@category.CategoryName.ToLower()"
-       class="list-group-item list-group-item-action @(Model.SelectDivision == category.CategoryName.ToLower() ? "active" : "")">
-   
-        @category.CategoryName
+        <a asp-controller="Shop" asp-action="List" asp-route-category="@category.CategoryName.ToLower()" 
+           class="category-box @(Model.SelectDivision == category.CategoryName.ToLower() ? "active" : "")">
+            @category.CategoryName
         </a>
     }
-</ul>
+</div>

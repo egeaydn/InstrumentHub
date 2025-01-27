@@ -5,7 +5,7 @@
 <div class="col-md-4 col-lg-3 mt-3">
     <div class="card product-card shadow-sm">
         <!-- Tıklanabilir Alan -->
-        <a asp-controller="Shop" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
+        <a asp-controller="Sales" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
             <!-- Ürün Resmi -->
             <div class="card-img-wrapper">
                 <img src="~/img/@(Model.Images.FirstOrDefault()?.ImageUrl ?? "placeholder.jpg")"

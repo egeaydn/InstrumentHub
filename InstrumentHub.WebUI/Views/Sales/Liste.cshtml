@@ -1,25 +1,16 @@
 ﻿@using Instrument.WebUI.Models
 @using InstrumentHub.Entites
 @model EProductListModel
-
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<link href="~/css/ındex.css" rel="stylesheet" />
+@{
+    ViewData["title"] = "Eproduct List";
+}
 
 <div class="row d-flex justify-content-center">
-   
-    <div class=col-md-12 "d-flex justify-content-center">
-        <partial name="_slider" />
-    </div>
-
     <div class="row mt-5">
-
         <div class="col-md-3">
-
             @await Component.InvokeAsync("CategoryList")
         </div>
-
         <div class="col-md-9">
-
             <div class="row">
                 @if (Model.EProducts != null && Model.EProducts.Count > 0)
                 {
@@ -32,12 +23,11 @@
                 {
                     <p>Ürün Bulanamadı.</p>
                 }
-
             </div>
-
+            <div class="row">
+                <div class="d-flex justify-content-center mt-5" page-model="@Model.PageInformation"></div>
+            </div>
         </div>
-
     </div>
 
 </div>
-

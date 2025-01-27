@@ -51,7 +51,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 	options.Cookie = new CookieBuilder
 	{
 		HttpOnly = true,
-		Name = "ETICARET.Security.Cookie",
+		Name = "InstrumentHub.Security.Cookie",
 		SameSite = SameSiteMode.Strict
 	};
 });
@@ -94,7 +94,7 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute(
 		name: "products",
 		pattern: "products/{category}",
-		defaults: new { controller = "Shop", action = "List" }
+		defaults: new { controller = "Sales", action = "List" }
 	);
 	endpoints.MapControllerRoute(
 		name: "adminProducts",

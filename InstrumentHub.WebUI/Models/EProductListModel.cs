@@ -19,7 +19,7 @@ namespace Instrument.WebUI.Models
 		public int ToatalItems { get; set; }
 		public int ItemsPerPage { get; set; }
 		public int CurrentPage { get; set; }
-		public int CurrentDivision { get; set; }
+		public string CurrentDivision { get; set; }
 		public int TotalPages()
 		{
 			return (int)Math.Ceiling((decimal)ToatalItems / ItemsPerPage);

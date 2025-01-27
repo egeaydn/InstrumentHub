@@ -1,0 +1,140 @@
+﻿@using Instrument.WebUI.Models
+@model EProductDetailModel
+@{
+    ViewData["title"] = "Eproduct Detail";
+}
+
+<link href="~/css/productDetails.css" rel="stylesheet" />
+
+<div class="row product-detail">
+    <!-- Sol taraf (Görseller) -->
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                @* Ürün görseli kontrolü *@
+                @{
+                    var image = Model.EProduct.Images.Find(img => img.EProductId == Model.EProduct.Id);
+                }
+                @if (image != null)
+                {
+                    <img src="~/img/@image.ImageUrl" class="img-fluid top-image" id="image-box" />
+                }
+                else
+                {
+                    <img src="~/img/placeholder.jpg" class="img-fluid top-image" id="image-box" />
+                }
+            </div>
+        </div>
+        <div class="row">
+            @* Küçük görseller *@
+            @foreach (var img in Model.EProduct.Images)
+            {
+                <div class="col-md-3 mb-3">
+                    <img src="~/img/@img.ImageUrl" class="img-fluid thumb-image" onclick="imageBox(this)" />
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Sağ taraf (Ürün Detayları) -->
+    <div class="col-md-9">
+        <h1 class="product-title mb-3">@Model.EProduct.Name</h1>
+        <hr />
+        <br />
+        @* Kategoriler *@
+        @foreach (var category in Model.Divisions)
+        {
+            <a href="#" class="btn btn-link category-link">@category.CategoryName</a>
+        }
+        <div class="product-price-section mb-3">
+            <h4 class="text-primary mb-3">@Model.EProduct.Price TL</h4>
+            @* Sepet ekleme formu *@
+            @if (!User.IsInRole("admin") && User.Identity.IsAuthenticated)
+            {
+                <form asp-controller="Cart" asp-action="AddToCart" method="POST">
+                    <input type="hidden" name="productId" value="@Model.EProduct.Id" />
+                    <div class="input-group cart-group">
+                        <input type="number" name="quantity" value="1" min="1" step="1" class="form-control quantity" />
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-primary btn-md add-to-cart-btn">
+                                <i class="fas fa-cart-plus"></i>
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Tab yapısı -->
+<div class="row">
+    <ul class="nav nav-tabs mt-2 product-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comment" type="button" role="tab" aria-controls="comment" aria-selected="false">Comments</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active product-description" id="description" role="tabpanel" aria-labelledby="description-tab">
+            @Html.Raw(Model.EProduct.Description)
+        </div>
+        <div class="tab-pane fade product-comments" id="comment" role="tabpanel" aria-labelledby="comments-tab"
+             data-product-id="@Model.EProduct.Id"
+             data-url="@Url.Action(action: "ShowProductComments", controller: "Comment", new { id = Model.EProduct.Id })">
+            <partial name="_PartialComments" for="@Model.Comments" />
+        </div>
+    </div>
+</div>
+
+<div class="row related-products">
+    <h3>Related Products</h3>
+    <div class="row">
+        @foreach (var product in Model.RelatedProducts)
+        {
+            <div class="col-md-4 col-lg-3 mt-3">
+                <div class="card product-card shadow-sm">
+                    <!-- Tıklanabilir Alan -->
+                    <a asp-controller="Sales" asp-action="Details" asp-route-id="@product.Id" class="text-decoration-none">
+                        <!-- Ürün Resmi -->
+                        <div class="card-img-wrapper">
+                            <img src="~/img/@(product.Images.FirstOrDefault()?.ImageUrl ?? "placeholder.jpg")"
+                                 class="card-img-top"
+                                 alt="@product.Name">
+                        </div>
+                        <!-- Kart Gövdesi -->
+                        <div class="card-body text-center">
+                            <h5 class="product-title text-dark">
+                                @product.Name
+                            </h5>
+                            <p class="product-brand">@product.Brand</p>
+                            <div class="product-price">
+                                <span>@product.Price TL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Kart Alt Bölümü (Tıklanamaz Alan) -->
+                    <div class="card-footer d-flex justify-content-between align-items-center bg-light">
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole("admin"))
+                        {
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="bi bi-cart-plus"></i> Add To Cart
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/CommentsImages.js"></script>
+}
