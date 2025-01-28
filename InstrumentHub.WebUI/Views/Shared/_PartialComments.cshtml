@@ -4,6 +4,7 @@
 
 @{
     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var usernames = ViewBag.Usernames as Dictionary<string, string> ?? new Dictionary<string, string>();
 }
 
 @if (User.Identity.IsAuthenticated)
@@ -31,7 +32,7 @@
         <div class="d-flex">
             <div class="flex-grow-1 ms-1 mt-3">
                 <h6 class="col-md-12">
-                    <span>Anonim</span> <!-- ödev hangi kullanıcı yorum yaptı.-->
+                    <span>@(usernames.ContainsKey(comment.UserId) ? usernames[comment.UserId] : "Anonim")</span>
                     <small class="text-muted">
                         <i>@comment.CommentCreateOn.ToString("ddd, dd MMMM yyyy")</i>
                     </small>

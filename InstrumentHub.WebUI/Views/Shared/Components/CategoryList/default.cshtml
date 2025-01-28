@@ -4,11 +4,11 @@
 <link href="~/css/default.css" rel="stylesheet" />
 <div class="category-container">
    
-    @foreach (var category in Model.Divisions)
+    @foreach (var division in Model.Divisions)
     {
-        <a asp-controller="Shop" asp-action="List" asp-route-category="@category.CategoryName.ToLower()" 
-           class="category-box @(Model.SelectDivision == category.CategoryName.ToLower() ? "active" : "")">
-            @category.CategoryName
+        <a asp-controller="Sales" asp-action="Liste" asp-route-category="@division.CategoryName.ToLower()"
+           class="category-box @(Model.SelectDivision == division.CategoryName.ToLower() ? "active" : "")">
+            @division.CategoryName
         </a>
     }
 </div>

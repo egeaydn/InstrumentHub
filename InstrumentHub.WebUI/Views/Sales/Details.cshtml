@@ -84,7 +84,7 @@
         </div>
         <div class="tab-pane fade product-comments" id="comment" role="tabpanel" aria-labelledby="comments-tab"
              data-product-id="@Model.EProduct.Id"
-             data-url="@Url.Action(action: "ShowProductComments", controller: "Comment", new { id = Model.EProduct.Id })">
+             data-url="@Url.Action(action: "ShowComment", controller: "Comment", new { id = Model.EProduct.Id })">
             <partial name="_PartialComments" for="@Model.Comments" />
         </div>
     </div>
@@ -136,5 +136,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/CommentsImages.js"></script>
+    <script src="~/js/Comment.js"></script>
 }

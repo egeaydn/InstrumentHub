@@ -55,7 +55,7 @@ namespace InstrumentHub.WebUI.Controllers
 				EProduct = eproduct,
 				Divisions = eproduct.ProductDivisions.Select(i => i.Division).ToList(),
 				Comments = eproduct.Comments,
-				RelatedProducts = relatedProducts // Yeni alan
+				RelatedProducts = relatedProducts 
 			});
 		}
 
