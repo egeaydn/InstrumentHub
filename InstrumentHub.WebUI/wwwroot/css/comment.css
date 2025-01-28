@@ -1,0 +1,138 @@
+﻿<style >
+/* Genel Ayarlar */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Yorum Giriş Alanı */
+.comment-input-container {
+    margin-bottom: 20px;
+}
+
+.comment-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.comment-input {
+    flex: 1;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+    .comment-input:focus {
+        border-color: #28a745;
+        outline: none;
+    }
+
+.submit-comment-btn {
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+    .submit-comment-btn:hover {
+        background-color: #218838;
+    }
+
+/* Yorum Kartları */
+.comment-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-author {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+
+.comment-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Butonlar */
+.edit-comment-btn,
+.delete-comment-btn {
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.edit-comment-btn {
+    background-color: #ffc107;
+}
+
+    .edit-comment-btn:hover {
+        background-color: #e0a800;
+        transform: scale(1.05);
+    }
+
+.delete-comment-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+    .delete-comment-btn:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+    }
+
+/* Uyarı Mesajı */
+.no-comments-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #856404;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Mobil Uyum */
+@media (max-width: 768px) {
+    .comment-input-wrapper {
+        flex-direction: column;
+    }
+
+    .submit-comment-btn,
+    .edit-comment-btn,
+    .delete-comment-btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+</style >

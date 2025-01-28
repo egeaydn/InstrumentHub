@@ -1,0 +1,106 @@
+﻿/* Genel Ayarlar */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Hafif gri arka plan */
+    color: #333;
+}
+
+/* Sayfa Başlığı */
+h1 {
+    font-size: 2.5rem;
+    color: #212529;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Profil Sayfası Yapısı */
+.text-center {
+    margin-top: 50px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.validation-box {
+    padding: 10px;
+    background-color: #fff3cd; /* Sarı tonunda uyarı alanı */
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+}
+
+.validation {
+    font-size: 0.9rem;
+}
+
+/* Form Alanları */
+form {
+    background: #ffffff; /* Beyaz arka plan */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    transition: transform 0.3s ease;
+}
+
+    form:hover {
+        transform: translateY(-3px); /* Formun hover'da yükselmesi */
+    }
+
+label {
+    font-weight: bold;
+    color: #495057;
+}
+
+input.form-control {
+    height: 45px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    input.form-control:focus {
+        border-color: #17a2b8; /* Odaklanıldığında mavi ton */
+        box-shadow: 0 0 6px rgba(23, 162, 184, 0.5);
+    }
+
+input[type="submit"] {
+    background-color: #dc3545; /* Kırmızı buton */
+    border: none;
+    padding: 12px 20px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    input[type="submit"]:hover {
+        background-color: #c82333; /* Daha koyu kırmızı */
+    }
+
+span.text-danger {
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 576px) {
+    form {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    input.form-control {
+        font-size: 0.9rem;
+    }
+
+    input[type="submit"] {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
