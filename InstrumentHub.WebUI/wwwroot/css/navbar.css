@@ -80,3 +80,8 @@
     .navbar .navbar-nav.ms-auto .nav-link {
         font-weight: bold;
     }
+/* Sağ tarafa hizalama */
+.navbar .dropdown-menu-end {
+    right: 0 !important;
+    left: auto !important;
+}
