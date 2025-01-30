@@ -23,6 +23,7 @@ namespace InstrumentHub.WebUI.Controllers
 		public IActionResult Home()
 		{
 
+
 			return View();
 		}
 	}
