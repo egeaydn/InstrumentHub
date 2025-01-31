@@ -119,7 +119,7 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute(
 		name: "cart",
 		pattern: "cart",
-		defaults: new { controller = "Cart", action = "Index" }
+		defaults: new { controller = "Basket", action = "Home" }
 	);
 	endpoints.MapControllerRoute(
 		name: "checkout",
