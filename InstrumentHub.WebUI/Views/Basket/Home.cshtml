@@ -31,7 +31,7 @@
                             <td>@item.ProductName</td>
                             <td>@item.Price</td>
                             <td>@item.Quantity</td>
-                            <td>@((@item.Quantity * item.Price).ToString("a"))</td>
+                            <td>@((@item.Quantity * item.Price).ToString("c"))</td>
                             <td>
                                 <form asp-controller="Basket" asp-action="DeleteFromBasket" method="POST" style="display:inline">
                                     <input type="hidden" name="productId" value="@item.ProductId" />
@@ -66,7 +66,7 @@
                 <thead>
                     <tr>
                         <th>Cart Total</th>
-                        <th>@Model.TotalPrice().ToString("a")</th>
+                        <th>@Model.TotalPrice().ToString("c")</th>
                     </tr>
                     <tr>
                         <th>Shipping</th>
@@ -74,7 +74,7 @@
                     </tr>
                     <tr>
                         <th>Order Total</th>
-                        <th><strong>@Model.TotalPrice().ToString("a")</strong></th>
+                        <th><strong>@Model.TotalPrice().ToString("c")</strong></th>
                     </tr>
                 </thead>
             </table>

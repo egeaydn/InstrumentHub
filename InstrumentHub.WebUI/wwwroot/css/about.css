@@ -1,0 +1,165 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+/* Header */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 3rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+    header h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    header p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+    }
+    /* Animasyonlu dalga efekti */
+    header::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMHB4IiBoZWlnaHQ9IjEwMHB4IiB2aWV3Qm94PSIwIDAgMTIwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDkuMzQzYzYwLjMxMSAxMy45NDYgMTI3LjM2NCAzNy4wNjQgMTgyLjI5NiAxMjguNjk1IDU1LjA5NiA5MS42MjUgMjAzLjY3NyAyNS45NjkgMjQ3LjE5NiAxMjguNjk1IDQ0LjkyNiA5MC4wMzkgNjQuNjQzIDExNy42MjUgNjQuNjQzIDUwLjQ1NyAwIDk1LjQyOS0xMy43NTYgMTMxLjQ0Mi0zNy41NjggMTgyLjI5Ni0xMjYuOTk1IDQ1Ljg3Ni0yMDIuNDc2LTU5LjQwNC0yNDcuNDI5LTEyOC42OTVDMzcuMzc0IDg2LjM5OCAwIDU0LjQ4MSAwIDQ5LjM0M3oiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuNCIvPjwvc3ZnPg==') repeat-x bottom;
+        transform: translateY(1px);
+    }
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+/* About Bölümü */
+.about-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 2rem;
+    align-items: center;
+    margin-top: -50px;
+}
+
+.about-text {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+    .about-text h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .about-text p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #667eea;
+    color: #fff;
+    border-radius: 50px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+    .btn:hover {
+        background: #556cd6;
+        transform: translateY(-2px);
+    }
+
+.about-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+/* Neden InstrumentHub? Bölümü */
+.features {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+    .features h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #333;
+    }
+
+.feature-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.feature-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .feature-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .feature-item h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #667eea;
+    }
+
+    .feature-item p {
+        font-size: 1rem;
+        color: #555;
+    }
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .about-text, .about-image img {
+        margin-top: 1rem;
+    }
+}
