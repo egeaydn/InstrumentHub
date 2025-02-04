@@ -36,8 +36,8 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 		{
 			using (var context = new DataContext())
 			{
-				var cmd = @"delete from CartItem where CartId=@p0 and ProductId=@p1";
-				context.Database.ExecuteSqlRaw(cmd, eproductId);
+				var cmd = @"delete from CartItem where CartId=@p0 and EProductId=@p1";
+				context.Database.ExecuteSqlRaw(cmd,cartId, eproductId);
 			}
 		}
 		public override void Update(Cart entity)
