@@ -35,7 +35,7 @@
                             <td>@((@item.Quantity * item.Price).ToString("c"))</td>
                             <td>
                                 <form asp-controller="Basket" asp-action="DeleteFromBasket" method="POST" style="display:inline">
-                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <input type="hidden" name="eProductId" value="@item.ProductId" />
                                     <button type="submit" class="btn btn-danger btn-sm">
                                         <i class="fa fa-times fa-fw"></i>
                                     </button>

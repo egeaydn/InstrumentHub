@@ -1,4 +1,5 @@
-﻿using Instrument.Business.Abstract;
+﻿using DocuSign.eSign.Model;
+using Instrument.Business.Abstract;
 using Instrument.WebUI.Identity;
 using Instrument.WebUI.Models;
 using InstrumentHub.Entites;
@@ -48,9 +49,10 @@ namespace InstrumentHub.WebUI.Controllers
 			
 			return RedirectToAction("Home");
 		}
-		public IActionResult DeleteFromBasket(int id)
+		[HttpPost]
+		public IActionResult DeleteFromBasket(int eProductId)
 		{
-			_cartService.DeleteFromCart(_usermanager.GetUserId(User), id);
+			_cartService.DeleteFromCart(_usermanager.GetUserId(User), eProductId);
 			return RedirectToAction("Home");
 		}
 	}
