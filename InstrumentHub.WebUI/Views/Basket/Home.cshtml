@@ -50,9 +50,20 @@
         else
         {
             <div class="alert alert-warning">
-                <h4>No Product in Cart</h4>
+                <h4 class="empty-cart-message">No Product in Cart</h4>
             </div>
         }
+        @if (Model.CartItems.Count == 0)
+        {
+            <div class="empty-cart">
+                <h2>Sepetinizde Ürün Yok</h2>
+                <p>Lütfen alışverişe başlamak için aşağıdaki butona tıklayın.</p>
+                <a href="/" class="btn btn-primary">
+                    <i class="fa fa-arrow-circle-left fa-fw"></i> Alışverişe Devam
+                </a>
+            </div>
+        }
+
     </div>
     <div class="col-md-4">
         @if (Model.CartItems.Count > 0)

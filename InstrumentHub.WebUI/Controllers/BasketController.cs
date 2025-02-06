@@ -49,6 +49,7 @@ namespace InstrumentHub.WebUI.Controllers
 			
 			return RedirectToAction("Home");
 		}
+
 		[HttpPost]
 		public IActionResult DeleteFromBasket(int eProductId)
 		{
