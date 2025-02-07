@@ -43,12 +43,12 @@ namespace InstrumentHub.WebUI.Controllers
 				}
 			);
 		}
-		public IActionResult AddToBasket(int productId,int quantity)
+		public IActionResult AddToBasket(int productId, int quantity)
 		{
-				_cartService.AddToCart(_usermanager.GetUserId(User), productId, quantity);
-			
+			_cartService.AddToCart(_usermanager.GetUserId(User), productId, quantity);
 			return RedirectToAction("Home");
 		}
+
 
 		[HttpPost]
 		public IActionResult DeleteFromBasket(int eProductId)
@@ -56,5 +56,20 @@ namespace InstrumentHub.WebUI.Controllers
 			_cartService.DeleteFromCart(_usermanager.GetUserId(User), eProductId);
 			return RedirectToAction("Home");
 		}
+		[HttpGet]
+		public IActionResult GetBasketItemCount()
+		{
+			var userId = _usermanager.GetUserId(User);
+			if (userId == null)
+			{
+				return Json(0);
+			}
+
+			var basket = _cartService.GetCartByUserId(userId);
+			int totalItemCount = basket?.CartItems.Sum(i => i.Quantity) ?? 0;
+
+			return Json(totalItemCount);
+		}
+
 	}
 }

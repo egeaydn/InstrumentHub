@@ -51,7 +51,7 @@
             @* Sepet ekleme formu *@
             @if (!User.IsInRole("admin") && User.Identity.IsAuthenticated)
             {
-                <form asp-controller="Cart" asp-action="AddToCart" method="POST">
+                <form asp-controller="Basket" asp-action="AddToBasket" method="POST">
                     <input type="hidden" name="productId" value="@Model.EProduct.Id" />
                     <div class="input-group cart-group">
                         <input type="number" name="quantity" value="1" min="1" step="1" class="form-control quantity" />

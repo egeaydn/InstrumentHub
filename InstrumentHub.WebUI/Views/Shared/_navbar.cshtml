@@ -49,12 +49,26 @@
                         <div class="container-fluid">
                             <ul class="navbar-nav">
                                 <!-- Badge -->
-                                <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" asp-controller="Basket" asp-action="Home">
-                                        <span class="badge badge-pill bg-danger">1</span>
-                                        <span><i class="fas fa-shopping-cart"></i></span>
-                                    </a>
-                                </li>
+                                    <span id="basket-count" class="badge badge-pill bg-danger">0</span>
+                                    <span><i class="fas fa-shopping-cart"></i></span>
+                                </a>
+                            </li>
+
+                            <script>
+                                function updateBasketCount() {
+                                    fetch('/Basket/GetBasketItemCount')
+                                        .then(response => response.json())
+                                        .then(count => {
+                                            document.getElementById('basket-count').textContent = count;
+                                        })
+                                        .catch(error => console.error('Error fetching basket count:', error));
+                                }
+
+                                document.addEventListener("DOMContentLoaded", updateBasketCount);
+                            </script>
+
                             </ul>
                         </div>
 
@@ -88,5 +102,25 @@
 
         </div>
     </div>
+    <script>
+        function addToBasket(productId, quantity) {
+            fetch('/Basket/AddToBasket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productId: productId, quantity: quantity })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    updateBasketCount(); // Sepet sayısını güncelle
+                }
+            })
+            .catch(error => console.error('Error adding to basket:', error));
+        }
+    </script>
+
 </nav>
+
 
