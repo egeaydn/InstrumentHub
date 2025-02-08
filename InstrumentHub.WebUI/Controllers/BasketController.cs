@@ -56,7 +56,7 @@ namespace InstrumentHub.WebUI.Controllers
 			_cartService.DeleteFromCart(_usermanager.GetUserId(User), eProductId);
 			return RedirectToAction("Home");
 		}
-		[HttpGet]
+
 		public IActionResult GetBasketItemCount()
 		{
 			var userId = _usermanager.GetUserId(User);
@@ -71,5 +71,24 @@ namespace InstrumentHub.WebUI.Controllers
 			return Json(totalItemCount);
 		}
 
+		public IActionResult Checkout()
+		{
+			var basket = _cartService.GetCartByUserId(_usermanager.GetUserId(User));
+			var orderModel = new OrderModel();
+			orderModel.CartTemplate = new CartModel()
+			{
+				CartId = basket.Id,
+				CartItems = basket.CartItems.Select(i => new CartItemModel()
+				{
+					CartItemId = i.Id,
+					ProductId = i.EProduct.Id,
+					ProductName = i.EProduct.Name,
+					Price = i.EProduct.Price,
+					Quantity = i.Quantity,
+					Image = i.EProduct.Images[0].ImageUrl
+				}).ToList()
+			};
+			return View(orderModel);
+		}
 	}
 }

@@ -1,0 +1,155 @@
+﻿/* Genel sayfa ayarları */
+body {
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Konteyner genel ayarları */
+.container {
+    max-width: 1140px;
+    margin: auto;
+    padding: 1rem;
+}
+
+/* Checkout formu kapsayıcısı */
+form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Başlık ayarları */
+h1, h4 {
+    color: #212529;
+    margin-bottom: 1.5rem;
+}
+
+/* Form elemanları (input, textarea) */
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+/* Label stili */
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Ödeme alanı (payment-box) stili */
+#payment-box {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Özel kontrol (checkbox, radio) stili */
+.custom-control {
+    margin-bottom: 1rem;
+}
+
+.custom-control-label {
+    cursor: pointer;
+}
+
+/* Bootstrap custom radio/checkbox renk geçişleri */
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.custom-control-label::before {
+    border-radius: 50%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Sepet listesi (Cart) stili */
+.list-group {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .list-group-item:last-child {
+        border-bottom: none;
+    }
+
+    .list-group-item h6 {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    /* Toplam fiyat stili */
+    .list-group-item strong {
+        font-size: 1.1rem;
+    }
+
+/* Buton stili */
+.btn-primary {
+    background: linear-gradient(90deg, #0062E6, #33AEFF);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+/* Mobil uyumlu (responsive) tasarım */
+@media (max-width: 767.98px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-md-8, .col-md-4, .col-md-6 {
+        width: 100%;
+        padding: 0 1rem;
+    }
+}
+
+/* Subtil animasyonlar */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Öğe bazlı animasyon uygulaması */
+form, .list-group, .btn-primary {
+    animation: fadeIn 0.6s ease-out;
+}

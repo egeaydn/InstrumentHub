@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
@@ -124,12 +126,12 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute(
 		name: "checkout",
 		pattern: "checkout",
-		defaults: new { controller = "Cart", action = "Checkout" }
+		defaults: new { controller = "Basket", action = "Checkout" }
 	);
 	endpoints.MapControllerRoute(
 	   name: "orders",
 	   pattern: "orders",
-	   defaults: new { controller = "Cart", action = "GetOrders" }
+	   defaults: new { controller = "Basket", action = "GetOrders" }
    );
 
 }

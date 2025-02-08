@@ -1,0 +1,160 @@
+﻿@using Instrument.WebUI.Models
+@model OrderModel
+@{
+    ViewData["title"] = "Checkout";
+}
+
+<link href="~/css/checkout.css" rel="stylesheet" />
+
+<div class="container">
+    <h1>Checkout</h1>
+    <hr />
+    <!-- Genel doğrulama mesajlarını burada listeleyebilirsiniz -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form action="/checkout" method="POST">
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Order Details</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Enter your first name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control" placeholder="Enter your last name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Adress"></label>
+                    <textarea asp-for="Adress" class="form-control" placeholder="Enter your address"></textarea>
+                    <span asp-validation-for="Adress" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="OrderNote"></label>
+                    <textarea asp-for="OrderNote" class="form-control" placeholder="Any additional notes?"></textarea>
+                    <span asp-validation-for="OrderNote" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="City"></label>
+                        <input asp-for="City" class="form-control" placeholder="City" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Phone"></label>
+                        <input asp-for="Phone" class="form-control" placeholder="Phone number" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Email address" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info" />
+                    <label for="save-info" class="custom-control-label">Save this information for next time</label>
+                </div>
+                <hr class="mb-4" />
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="credit" name="paymentMethod" onclick="PaymentMethodChangeEvent('credit')" value="credit" checked required />
+                        <label for="credit" class="custom-control-label">Credit Card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="eft" name="paymentMethod" onclick="PaymentMethodChangeEvent('eft')" value="eft" required />
+                        <label for="eft" class="custom-control-label">Eft</label>
+                    </div>
+                </div>
+                <div id="payment-box">
+                    <h4 class="mb-4">Payment</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="CardName"></label>
+                            <input asp-for="CardName" class="form-control" placeholder="Name on card" />
+                            <span asp-validation-for="CardName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="CardNumber"></label>
+                            <input asp-for="CardNumber" class="form-control" placeholder="Card number" />
+                            <span asp-validation-for="CardNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="ExparationMonth"></label>
+                            <input asp-for="ExparationMonth" class="form-control" placeholder="MM" />
+                            <span asp-validation-for="ExparationMonth" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="ExparationYear"></label>
+                            <input asp-for="ExparationYear" class="form-control" placeholder="YYYY" />
+                            <span asp-validation-for="ExparationYear" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="CVV"></label>
+                            <input asp-for="CVV" class="form-control" placeholder="CVV" />
+                            <span asp-validation-for="CVV" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Complete Order</button>
+            </div>
+            <div class="col-md-4">
+                <h4 class="mb-4">
+                    <span class="text-muted">Your Cart</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    @if (Model.CartTemplate?.CartItems != null)
+                    {
+                        @foreach (var item in Model.CartTemplate.CartItems)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="my-5">
+                                        @item.ProductName
+                                    </h6>
+                                </div>
+                                <span class="text-muted">@item.Price ₺ <small>x @(item.Quantity)</small></span>
+                            </li>
+                        }
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Total (TL)</span>
+                            <strong>@Model.CartTemplate?.TotalPrice().ToString("c")</strong>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <!-- jQuery ve jQuery Validation kütüphaneleriniz varsa aşağıdaki scriptlerin dahil olduğundan emin olun -->
+    <script>
+        // Ödeme yöntemi seçimine göre payment-box alanını göster/gizle
+        function PaymentMethodChangeEvent(method) {
+            var paymentBox = document.getElementById("payment-box");
+            if (method === "credit") {
+                paymentBox.style.display = "block";
+            } else {
+                paymentBox.style.display = "none";
+            }
+        }
+
+        // Sayfa yüklendiğinde seçili ödeme yöntemine göre payment-box'ı ayarla
+        document.addEventListener("DOMContentLoaded", function () {
+            var creditRadio = document.getElementById("credit");
+            if (creditRadio && creditRadio.checked) {
+                PaymentMethodChangeEvent("credit");
+            } else {
+                PaymentMethodChangeEvent("eft");
+            }
+        });
+    </script>
+}
