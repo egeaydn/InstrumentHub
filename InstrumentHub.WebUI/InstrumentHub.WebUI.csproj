@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="DocuSign.eSign.dll" Version="8.0.2" />
+    <PackageReference Include="Iyzipay" Version="2.1.66" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">

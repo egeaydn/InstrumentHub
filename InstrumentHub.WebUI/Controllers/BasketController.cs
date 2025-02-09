@@ -4,6 +4,7 @@ using Instrument.WebUI.Identity;
 using Instrument.WebUI.Models;
 using InstrumentHub.Entites;
 using InstrumentHub.WebUI.Extensions;
+using Iyzipay.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -123,7 +124,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 					if (payment.Result.Status == "success")
 					{
-						SaveOrder(model, payment, userId);
+						SaveOrder(model, userId);
 						ClearCart(cart.Id.ToString());
 						TempData.Put("message", new ResultMessageModel()
 						{
@@ -169,7 +170,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 		//Burası Eft Kısmı
 
-		private void SaveOrder(OrderModel model, object payment, string userId)
+		private void SaveOrder(OrderModel model,  string userId)
 		{
 			Order order = new Order()
 			{
@@ -206,7 +207,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 		}
 
-		private object PaymentProces(OrderModel model)
+		private async Task<Payment> PaymentProces(OrderModel model)
 		{
 			var userId = _usermanager.GetUserId(User);
 			var orders = _orderService.GetOrders(userId);
