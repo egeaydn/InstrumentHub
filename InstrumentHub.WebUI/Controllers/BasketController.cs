@@ -120,7 +120,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 				if (paymentMethod == "credit")
 				{
-					var payment = PaymentProces(model);
+					var payment = PaymentProces(model); // Payment Process Yarın yazılacak
 
 					if (payment.Result.Status == "success")
 					{
@@ -207,7 +207,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 		}
 
-		private async Task<Payment> PaymentProces(OrderModel model)
+		private IActionResult GetOrders()
 		{
 			var userId = _usermanager.GetUserId(User);
 			var orders = _orderService.GetOrders(userId);
