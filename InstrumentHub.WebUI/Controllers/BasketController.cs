@@ -1,10 +1,13 @@
-﻿using DocuSign.eSign.Model;
+﻿using System.Net;
+using DocuSign.eSign.Model;
 using Instrument.Business.Abstract;
 using Instrument.WebUI.Identity;
 using Instrument.WebUI.Models;
 using InstrumentHub.Entites;
 using InstrumentHub.WebUI.Extensions;
+using Iyzipay;
 using Iyzipay.Model;
+using Iyzipay.Request;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -120,7 +123,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 				if (paymentMethod == "credit")
 				{
-					var payment = PaymentProces(model); // Payment Process Yarın yazılacak
+					var payment = PaymentProcess(model); // Payment Process Yarın yazılacak
 
 					if (payment.Result.Status == "success")
 					{
@@ -166,6 +169,77 @@ namespace InstrumentHub.WebUI.Controllers
 		private void ClearCart(string id)
 		{
 			_cartService.ClearCart(id);
+		}
+
+		private async Task<Payment> PaymentProcess(OrderModel model)
+		{
+			Options options = new Options()
+			{
+				BaseUrl = "https://sandbox-api.iyzipay.com",
+				ApiKey = "sandbox-cNnJEaoyNt0sCREL4nOq8PajTLQwWeXz",
+				SecretKey = "sandbox-cmJxJfaGlVarqNV3c5ZQcMTwVNh8qswx"
+			};
+
+			string extarnalIpString = new WebClient().DownloadString("http://icanhazip.com").Replace("\\r\\n", "").Replace("\\n","").Trim();
+
+			var externalIp = IPAddress.Parse(extarnalIpString);
+
+			CreatePaymentRequest request = new CreatePaymentRequest();
+			request.Locale = Locale.TR.ToString();
+			request.ConversationId = Guid.NewGuid().ToString();
+			request.Price = model.CartTemplate.TotalPrice().ToString().Split(',')[0];
+			request.PaidPrice = model.CartTemplate.TotalPrice().ToString().Split(',')[0];
+			request.Currency = Iyzipay.Model.Currency.TRY.ToString();
+			request.Installment = 1;
+			request.BasketId = model.CartTemplate.CartId.ToString();
+			request.PaymentGroup = PaymentGroup.PRODUCT.ToString();
+			request.PaymentChannel = PaymentChannel.WEB.ToString();
+
+			PaymentCard paymentCard = new PaymentCard()
+			{
+				CardHolderName = model.CardName,
+				CardNumber = model.CardNumber,
+				ExpireYear = model.ExparationYear,
+				ExpireMonth = model.ExparationMonth,
+				Cvc = model.CVV,
+				RegisterCard = 0
+			};
+
+			request.PaymentCard = paymentCard;
+
+			Buyer buyer = new Buyer()
+			{
+				Id = _usermanager.GetUserId(User),
+				Name = model.FirstName,
+				Surname = model.LastName,
+				GsmNumber = model.Phone,
+				Email = model.Email,
+				IdentityNumber = "12345678901",
+				RegistrationAddress = model.Adress,
+				Ip = externalIp.ToString(),
+				City = model.City,
+				Country = "TURKEY",
+				ZipCode = "34736"
+			};
+
+			request.Buyer = buyer;
+
+			Address address = new Address()
+			{
+				ContactName = model.FirstName + " " + model.LastName,
+				City = model.City,
+				Country = "TURKEY",
+				Description = model.Adress,
+				ZipCode = "34742"
+			};
+
+			request.ShippingAddress = address;
+			request.BillingAddress = address;
+
+			List<BasketItem> basketItems = new List<BasketItem>();
+			BasketItem basketItem;
+
+			return View();
 		}
 
 		//Burası Eft Kısmı
