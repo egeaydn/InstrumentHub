@@ -123,7 +123,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 				if (paymentMethod == "credit")
 				{
-					var payment = PaymentProcess(model); // Payment Process Yarın yazılacak
+					var payment = PaymentProccess(model); // Payment Process Yarın yazılacak
 
 					if (payment.Result.Status == "success")
 					{
@@ -171,7 +171,7 @@ namespace InstrumentHub.WebUI.Controllers
 			_cartService.ClearCart(id);
 		}
 
-		private async Task<Payment> PaymentProcess(OrderModel model)
+		private async Task<Payment> PaymentProccess(OrderModel model)
 		{
 			Options options = new Options()
 			{
@@ -180,7 +180,7 @@ namespace InstrumentHub.WebUI.Controllers
 				SecretKey = "sandbox-cmJxJfaGlVarqNV3c5ZQcMTwVNh8qswx"
 			};
 
-			string extarnalIpString = new WebClient().DownloadString("http://icanhazip.com").Replace("\\r\\n", "").Replace("\\n","").Trim();
+			string extarnalIpString = new WebClient().DownloadString("http://icanhazip.com").Replace("\\r\\n", "").Replace("\\n", "").Trim();
 
 			var externalIp = IPAddress.Parse(extarnalIpString);
 
@@ -239,7 +239,24 @@ namespace InstrumentHub.WebUI.Controllers
 			List<BasketItem> basketItems = new List<BasketItem>();
 			BasketItem basketItem;
 
-			return View();
+			foreach (var cartıtem in model.CartTemplate.CartItems)
+			{
+				basketItem = new BasketItem()
+				{
+					Id = cartıtem.ProductId.ToString(),
+					Name = cartıtem.ProductName,
+					Category1 = _productService.GetEProductDetail(cartıtem.ProductId).ProductDivisions.FirstOrDefault().DivisionId.ToString(),
+					ItemType = BasketItemType.PHYSICAL.ToString(),
+					Price = (cartıtem.Price * cartıtem.Quantity).ToString().Split(',')[0]
+				};
+				basketItems.Add(basketItem);
+			}
+
+			request.BasketItems = basketItems;
+
+			Payment payment = await Payment.Create(request, options);
+
+			return payment;
 		}
 
 		//Burası Eft Kısmı
