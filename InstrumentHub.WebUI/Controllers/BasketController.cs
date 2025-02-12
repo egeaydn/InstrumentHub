@@ -281,45 +281,44 @@ namespace InstrumentHub.WebUI.Controllers
 
 		}
 
-		private IActionResult GetOrders()
+		public IActionResult GetOrders()
 		{
 			var userId = _usermanager.GetUserId(User);
-			var orders = _orderService.GetOrders(userId);
+			var orders = _orderService.GetOrders(userId) ?? new List<Order>(); // Null kontrolü eklendi
 
 			var orderListModel = new List<OrderListeModel>();
 
-			OrderListeModel orderModel;
-
 			foreach (var order in orders)
 			{
-
-				orderModel = new OrderListeModel();
-				orderModel.id = order.Id;
-				orderModel.Adress = order.Adress;
-				orderModel.OrderNumber = order.OrderNumber;
-				orderModel.OrderDate = order.Orderdate;
-				orderModel.OrderState = order.OrderEnums;
-				orderModel.PaymentTypes = order.PaymentEnum;
-				orderModel.OrderNote = order.OrderNote;
-				orderModel.City = order.City;
-				orderModel.Email = order.Email;
-				orderModel.FirstName = order.FirstName;
-				orderModel.LastName = order.Lastname;
-				orderModel.Phone = order.Phone;
-
-				orderModel.OrderItems = order.OrderItems.Select(i => new OrderItemCartItemModel()
+				var orderModel = new OrderListeModel
 				{
-					OrderItemId = i.Id,
-					ProductName = i.Eproduct.Name,
-					Price = i.Eproduct.Price,
-					Quantity = i.Quantity,
-					ImageUrl = i.Eproduct.Images[0].ImageUrl
-				}).ToList();
+					id = order.Id,
+					Adress = order.Adress,
+					OrderNumber = order.OrderNumber,
+					OrderDate = order.Orderdate,
+					OrderState = order.OrderEnums,
+					PaymentTypes = order.PaymentEnum,
+					OrderNote = order.OrderNote,
+					City = order.City,
+					Email = order.Email,
+					FirstName = order.FirstName,
+					LastName = order.Lastname,
+					Phone = order.Phone,
+					OrderItems = order.OrderItems.Select(i => new OrderItemCartItemModel()
+					{
+						OrderItemId = i.Id,
+						ProductName = i.Eproduct.Name,
+						Price = i.Eproduct.Price,
+						Quantity = i.Quantity,
+						ImageUrl = i.Eproduct.Images[0].ImageUrl
+					}).ToList()
+				};
 
 				orderListModel.Add(orderModel);
 			}
 
 			return View(orderListModel);
 		}
+
 	}
 }

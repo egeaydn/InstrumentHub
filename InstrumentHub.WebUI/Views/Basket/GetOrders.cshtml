@@ -6,6 +6,20 @@
 
 <h1>My Orders</h1>
 <hr />
+@if (Model == null || !Model.Any())
+{
+    <p>You have no orders.</p>
+}
+else
+{
+    @foreach (var orders in Model)
+    {
+        <table class="table">
+            ...
+        </table>
+    }
+}
+
 @foreach (var order in Model)
 {
     <table class="table table-sm mb-5">
@@ -67,4 +81,6 @@
             </tr>
         </tfoot>
     </table>
+
+
 }
