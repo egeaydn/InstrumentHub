@@ -100,7 +100,7 @@ namespace InstrumentHub.WebUI.Controllers
 		[HttpPost]
 		public IActionResult Checkout(OrderModel model, string paymentMethod)
 		{
-			ModelState.Remove("CartModel");
+			ModelState.Remove("CartTemplate");
 
 			if (ModelState.IsValid)
 			{

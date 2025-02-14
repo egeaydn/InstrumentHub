@@ -5,7 +5,7 @@
 		public int CartId { get; set; }
 		public List<CartItemModel> CartItems { get; set; }
 
-		public Decimal TotalPrice()
+		public decimal TotalPrice()
 		{
 			return CartItems.Sum(i => i.Price * i.Quantity);
 		}
@@ -15,7 +15,7 @@
 	{
 		public int CartItemId { get; set; }
 		public int Quantity { get; set; }
-		public Decimal Price { get; set; }
+		public decimal Price { get; set; }
 		public int ProductId { get; set; }
 		public string ProductName { get; set; }
 		public string Image { get; set; }
