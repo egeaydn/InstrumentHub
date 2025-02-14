@@ -1,128 +1,13 @@
 ﻿@using Instrument.WebUI.Models
 @model List<OrderListeModel>
+
+    <link href="~/css/orders.css" rel="stylesheet" />
 @{
     ViewData["Title"] = "My Orders";
     int orderIndex = 0;
 }
 
-@section Styles {
-    <style>
-        /* Renk ve stil değişkenleri */
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #0056b3;
-            --light-color: #f8f9fa;
-            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
 
-        /* Sayfa genelinde arka plan */
-        body {
-            background: linear-gradient(135deg, #F7F7F7, #a6c1ee);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Kart (order-card) temel ayarları */
-        .order-card {
-            margin-bottom: 1.5rem;
-            border: none;
-            box-shadow: var(--card-shadow);
-            border-radius: 10px;
-            overflow: hidden;
-            background: #fff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-            .order-card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            }
-
-        /* Kart başlığı (header) dinamik ve gradient arka plan */
-        .order-card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            cursor: pointer;
-            padding: 1.2rem 1.5rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            position: relative;
-            transition: background 0.3s ease;
-        }
-
-            .order-card-header:before {
-                content: "";
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 50px;
-                height: 100%;
-                background: rgba(255, 255, 255, 0.1);
-                transform: skewX(45deg);
-            }
-
-            .order-card-header:hover {
-                background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            }
-
-        /* Kart gövdesi (body) */
-        .order-card-body {
-            padding: 1.5rem;
-            background: #fff;
-        }
-        /* Her ürün satırını (order-item) düzenleme */
-        .order-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-            .order-item:hover {
-                transform: scale(1.02);
-            }
-
-            .order-item img {
-                width: 80px;
-                height: 80px;
-                object-fit: cover;
-                margin-right: 20px;
-                border-radius: 8px;
-                border: 2px solid var(--light-color);
-            }
-
-            .order-item div {
-                line-height: 1.4;
-                font-size: 1rem;
-                color: #333;
-            }
-
-        /* Kart alt bilgisi (footer) */
-        .order-card-footer {
-            background: var(--light-color);
-            padding: 1rem 1.5rem;
-            border-top: 1px solid #ddd;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-            .order-card-footer span,
-            .order-card-footer small {
-                font-size: 0.9rem;
-                color: #555;
-            }
-
-            .order-card-footer .footer-top {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .order-card-footer .footer-bottom {
-                font-style: italic;
-            }
-    </style>
-}
 
 <div class="container my-5">
     <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
