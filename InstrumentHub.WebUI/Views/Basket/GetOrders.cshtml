@@ -1,86 +1,191 @@
 ﻿@using Instrument.WebUI.Models
 @model List<OrderListeModel>
 @{
-    ViewData["title"] = "Orders";
+    ViewData["Title"] = "My Orders";
+    int orderIndex = 0;
 }
 
-<h1>My Orders</h1>
-<hr />
-@if (Model == null || !Model.Any())
-{
-    <p>You have no orders.</p>
-}
-else
-{
-    @foreach (var orders in Model)
-    {
-        <table class="table">
-            ...
-        </table>
-    }
-}
+@section Styles {
+    <style>
+        /* Renk ve stil değişkenleri */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #0056b3;
+            --light-color: #f8f9fa;
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
 
-@foreach (var order in Model)
-{
-    <table class="table table-sm mb-5">
-        <thead class="table-light">
-            <tr>
-                <th colspan="2"><strong>Order Number:</strong>#@order.OrderNumber</th>
-                <th>Price</th>
-                <th>Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var orderItem in order.OrderItems)
-            {
-                <tr>
-                    <td>
-                        <img src="~/img/@orderItem.ImageUrl" width="80" />
-                    </td>
-                    <td>
-                        @orderItem.ProductName
-                    </td>
-                    <td>
-                        @orderItem.Price
-                    </td>
-                    <td>
-                        @orderItem.Quantity
-                    </td>
-                </tr>
+        /* Sayfa genelinde arka plan */
+        body {
+            background: linear-gradient(135deg, #F7F7F7, #a6c1ee);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Kart (order-card) temel ayarları */
+        .order-card {
+            margin-bottom: 1.5rem;
+            border: none;
+            box-shadow: var(--card-shadow);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .order-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
             }
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="2"><strong>Customer Name:</strong></td>
-                <td>FirstName @order.FirstName</td>
-                <td rowspan="7" class="ps-4"><h4>Total: </h4> @order.TotalPrice().ToString("c")</td>
-            </tr>
-            <tr>
-                <td colspan="2"><strong>Order Date:</strong></td>
-                <td>@order.OrderDate</td>
-            </tr>
-            <tr>
-                <td colspan="2"><strong>Address:</strong></td>
-                <td>@order.Adress</td>
-            </tr>
-            <tr>
-                <td colspan="2"><strong>Phone:</strong></td>
-                <td>@order.Phone</td>
-            </tr>
-            <tr>
-                <td colspan="2"><strong>Email:</strong></td>
-                <td>@order.Email</td>
-            </tr>
-            <tr>
-                <td colspan="2"><strong>Payment Status:</strong></td>
-                <td>@order.PaymentTypes</td>
-            </tr>
-            <tr>
-                <td colspan="2"><strong>Order Status:</strong></td>
-                <td>@order.OrderState</td>
-            </tr>
-        </tfoot>
-    </table>
 
+        /* Kart başlığı (header) dinamik ve gradient arka plan */
+        .order-card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            cursor: pointer;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            position: relative;
+            transition: background 0.3s ease;
+        }
 
+            .order-card-header:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 50px;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.1);
+                transform: skewX(45deg);
+            }
+
+            .order-card-header:hover {
+                background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            }
+
+        /* Kart gövdesi (body) */
+        .order-card-body {
+            padding: 1.5rem;
+            background: #fff;
+        }
+        /* Her ürün satırını (order-item) düzenleme */
+        .order-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+            .order-item:hover {
+                transform: scale(1.02);
+            }
+
+            .order-item img {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                margin-right: 20px;
+                border-radius: 8px;
+                border: 2px solid var(--light-color);
+            }
+
+            .order-item div {
+                line-height: 1.4;
+                font-size: 1rem;
+                color: #333;
+            }
+
+        /* Kart alt bilgisi (footer) */
+        .order-card-footer {
+            background: var(--light-color);
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+            .order-card-footer span,
+            .order-card-footer small {
+                font-size: 0.9rem;
+                color: #555;
+            }
+
+            .order-card-footer .footer-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .order-card-footer .footer-bottom {
+                font-style: italic;
+            }
+    </style>
 }
+
+<div class="container my-5">
+    <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var order in Model)
+            {
+                var collapseId = "orderCollapse" + orderIndex;
+                <div class="col-md-6 col-lg-4">
+                    <div class="card order-card">
+                        <!-- Kart Başlığı: Tıklanabilir başlık ile collapse açma -->
+                        <div class="card-header order-card-header"
+                             data-bs-toggle="collapse"
+                             data-bs-target="#@collapseId"
+                             aria-expanded="false"
+                             aria-controls="@collapseId">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Order #@order.OrderNumber</span>
+                                <span>@order.OrderState</span>
+                            </div>
+                        </div>
+                        <!-- Açılır içerik -->
+                        <div id="@collapseId" class="collapse">
+                            <div class="card-body order-card-body">
+                                @if (order.OrderItems != null && order.OrderItems.Any())
+                                {
+                                    @foreach (var item in order.OrderItems)
+                                    {
+                                        <div class="order-item">
+                                            <img src="~/img/@item.ImageUrl" alt="@item.ProductName" />
+                                            <div>
+                                                <strong>@item.ProductName</strong><br />
+                                                Price: @item.Price.ToString("c")<br />
+                                                Qty: @item.Quantity
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>No items in this order.</p>
+                                }
+                            </div>
+                            <!-- Kart Alt Bilgisi: Sipariş tarihi, toplam ve müşteri bilgileri -->
+                            <div class="card-footer order-card-footer">
+                                <div class="footer-top">
+                                    <span>Order Date: @order.OrderDate.ToString("dd/MM/yyyy")</span>
+                                    <span><strong>Total: @order.TotalPrice().ToString("c")</strong></span>
+                                </div>
+                                <div class="footer-bottom">
+                                    <small>Customer: @order.FirstName</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                orderIndex++;
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">You have no orders.</div>
+    }
+</div>
