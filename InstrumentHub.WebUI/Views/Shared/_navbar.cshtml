@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="~/css/navbar.css">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
     <div class="container">
         <!-- Marka -->
         <a class="navbar-brand fw-bold" href="#">InstrumentHub</a>
@@ -46,12 +46,12 @@
             <ul class="navbar-nav ms-auto">
                 @if (User.Identity.IsAuthenticated)
                 {
-                        <div class="container-fluid">
-                            <ul class="navbar-nav">
-                                <!-- Badge -->
+                    <div class="container-fluid">
+                        <ul class="navbar-nav">
+                            <!-- Badge -->
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Basket" asp-action="Home">
-                                    <span id="basket-count" class="badge badge-pill bg-danger">0</span>
+                                    <span id="basket-count" class="badge badge-pill bg-warning">0</span>
                                     <span><i class="fas fa-shopping-cart"></i></span>
                                 </a>
                             </li>
@@ -69,12 +69,12 @@
                                 document.addEventListener("DOMContentLoaded", updateBasketCount);
                             </script>
 
-                            </ul>
-                        </div>
+                        </ul>
+                    </div>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           My Account
+                            My Account
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="userDropdown">
                             <li>-@User.Identity.Name</li>
@@ -85,22 +85,22 @@
                             <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
                         </ul>
                     </li>
-                    
+
                 }
                 else
                 {
-                     <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
                     </li>
-			</div>
+            </div>
                 }
-            </ul>
+        </ul>
 
-        </div>
+    </div>
     </div>
     <script>
         function addToBasket(productId, quantity) {

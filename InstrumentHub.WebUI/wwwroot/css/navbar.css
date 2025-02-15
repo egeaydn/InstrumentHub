@@ -10,6 +10,7 @@
         text-decoration: none; /* Alt çizgiyi kaldır */
         padding: 8px 15px;
         transition: color 0.3s ease, background-color 0.3s ease;
+        font-weight: 500;
     }
 
         /* Navbar link hover ve aktif durum */
