@@ -1,9 +1,61 @@
 ﻿@using Instrument.WebUI.Models
 @model DivisionListViewModel
+<style>
+    .category-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Kutu arası mesafe */
+        margin-bottom: 20px; /* Ürünler ile arasındaki mesafe */
+        flex-wrap: wrap; /* Mobil uyumlu olmasını sağlar */
+    }
 
-<link href="~/css/default.css" rel="stylesheet" />
-<div class="category-container">
+    .category-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 30px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px; /* Daha yumuşak köşeler */
+        text-decoration: none;
+        font-weight: bold;
+        color: #333;
+        transition: all 0.3s ease; /* Tüm özelliklere animasyon ekle */
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+        min-width: 120px; /* Minimum genişlik */
+    }
+
+        .category-box:hover {
+            background-color: #007bff;
+            color: white;
+            transform: translateY(-3px); /* Hafif yukarı hareket */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Hover durumunda gölgeyi artır */
+        }
+
+        .category-box.active {
+            background-color: #007bff;
+            color: white;
+            transform: translateY(-3px); /* Aktif durumda da hafif yukarı hareket */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aktif durumda gölgeyi artır */
+        }
+
+    /* Mobil uyumlu stil */
    
+
+    .category-box {
+        padding: 12px 20px; /* Mobilde daha küçük padding */
+        min-width: 100px; /* Mobilde daha küçük minimum genişlik */
+        font-size: 14px; /* Mobilde daha küçük yazı boyutu */
+    }
+
+    }
+
+    /* Ekstra küçük ekranlar için stil */
+   
+</style>
+
+<div class="category-container">
     @foreach (var division in Model.Divisions)
     {
         <a asp-controller="Sales" asp-action="Liste" asp-route-category="@division.CategoryName.ToLower()"

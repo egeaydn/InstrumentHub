@@ -1,29 +1,28 @@
-﻿/* Navbar genel tasarımı */
-.navbar {
+﻿.navbar {
     font-family: 'Arial', sans-serif;
     font-size: 16px;
 }
 
-    /* Navbar linkleri */
+
     .navbar .nav-link {
         color: #ffffff;
-        text-decoration: none; /* Alt çizgiyi kaldır */
+        text-decoration: none; 
         padding: 8px 15px;
         transition: color 0.3s ease, background-color 0.3s ease;
         font-weight: 500;
     }
 
-        /* Navbar link hover ve aktif durum */
+
         .navbar .nav-link:hover,
         .navbar .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.2); /* Hafif bir arka plan efekti */
-            color: #f8d210; /* Sarıya dönük vurgu rengi */
-            border-radius: 5px; /* Hafif yuvarlatma */
+            background-color: rgba(255, 255, 255, 0.2); 
+            color: #f8d210; 
+            border-radius: 5px; 
         }
 
-    /* Dropdown menü tasarımı */
+   
     .navbar .dropdown-menu {
-        background-color: #343a40; /* Daha koyu arka plan */
+        background-color: #343a40; 
         border: none;
         border-radius: 5px;
     }
@@ -38,7 +37,7 @@
             color: #f8d210;
         }
 
-/* Navbar toggler (mobil cihazlar için) */
+
 .navbar-toggler {
     border: none;
     background-color: #f8d210;
@@ -72,16 +71,16 @@
         top: 8px;
     }
 
-/* Sağ ve sol menülerin boşlukları */
+
 .navbar .navbar-nav {
-    gap: 10px; /* Menü elemanları arasında boşluk */
+    gap: 10px; 
 }
 
-    /* Sağ menü elemanlarına hover efekti */
+  
     .navbar .navbar-nav.ms-auto .nav-link {
         font-weight: bold;
     }
-/* Sağ tarafa hizalama */
+
 .navbar .dropdown-menu-end {
     right: 0 !important;
     left: auto !important;

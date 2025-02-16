@@ -6,19 +6,19 @@
 <link href="~/css/ındex.css" rel="stylesheet" />
 
 <div class="row d-flex justify-content-center">
-   
+    <div >
+
+        @await Component.InvokeAsync("CategoryList")
+    </div>
+
     <div class=col-md-12 "d-flex justify-content-center">
         <partial name="_slider" />
     </div>
 
     <div class="row mt-5">
 
-        <div class="col-md-3">
-
-            @await Component.InvokeAsync("CategoryList")
-        </div>
-
-        <div class="col-md-9">
+       
+        <div>
 
             <div class="row">
                 @if (Model.EProducts != null && Model.EProducts.Count > 0)
