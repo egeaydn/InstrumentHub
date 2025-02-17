@@ -94,10 +94,12 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
 
 	endpoints.MapControllerRoute(
-		name: "products",
-		pattern: "products/{category}",
-		defaults: new { controller = "Sales", action = "List" }
+		name: "eproducts",
+		pattern: "eproducts/{division?}",
+		defaults: new { controller = "Sales", action = "Liste" }
 	);
+
+
 	endpoints.MapControllerRoute(
 		name: "adminProducts",
 		pattern: "admin/products",

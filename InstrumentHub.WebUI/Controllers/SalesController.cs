@@ -1,4 +1,5 @@
-﻿using Instrument.Business.Abstract;
+﻿using System.Diagnostics;
+using Instrument.Business.Abstract;
 using Instrument.WebUI.Models;
 using InstrumentHub.Entites;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,12 @@ namespace InstrumentHub.WebUI.Controllers
 		[Route("eproducts/{division?}")]
 		public IActionResult Liste(string division, int page = 1)
 		{
-			const int pageSize = 3;
+			if (string.IsNullOrEmpty(division))
+			{
+				return NotFound(); // division bilgisi boş ise 404 döndür
+			}
+
+			const int pageSize = 5;
 
 			var eproducts = new EProductListModel()
 			{
@@ -29,8 +35,11 @@ namespace InstrumentHub.WebUI.Controllers
 				},
 				EProducts = _eproductServices.GetEProductByDivision(division, page, pageSize)
 			};
+
 			return View(eproducts);
 		}
+
+
 
 		public IActionResult Details(int? id)
 		{

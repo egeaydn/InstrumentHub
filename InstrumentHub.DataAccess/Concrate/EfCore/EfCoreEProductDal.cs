@@ -28,24 +28,31 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 
 					return eproducts.Count();
 				}
+				else
+				{
+					return eproducts.Include(i => i.ProductDivisions)
+								  .ThenInclude(i => i.Division)
+								  .Where(i => i.ProductDivisions.Any())
+								  .Count();
+				}
 				return 0;
 			}
 		}
 
-		public List<EProduct> GetEProductsCategory(string division, int screen, int screenSize)
+		public List<EProduct> GetEProductsDivision(string division, int page, int pageSize)
 		{
 			using (var context = new DataContext())
 			{
 				var eproducts = context.EProducts.Include("Images").AsQueryable();
 
-				if (!string.IsNullOrEmpty(division))
+				if (!string.IsNullOrEmpty(division) && division != "all")
 				{
 					eproducts = eproducts
 						.Include(i => i.ProductDivisions)
 						.ThenInclude(i => i.Division)
 						.Where(i => i.ProductDivisions.Any(a => a.Division.CategoryName.ToLower() == division.ToLower()));
 				}
-				return eproducts.Skip((screen - 1) * screenSize).Take(screenSize).ToList();
+				return eproducts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 			}
 		}
 
@@ -71,7 +78,6 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 
 				if(products is not null)
 				{
-					context.Images.RemoveRange(context.Images.Where(i => i.EProductId == entity.Id));
 					products.Price = entity.Price;
 					products.Name = entity.Name;
 					products.Description = entity.Description;
@@ -85,7 +91,7 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 				context.SaveChanges();
 			}
 		}
-		public void Delete(EProduct entity)
+		public override void Delete(EProduct entity)
 		{
 			using (var context = new DataContext())
 			{
@@ -95,24 +101,6 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 			}
 		}
 
-		public List<EProduct> GetEProductsDivision(string division, int screen, int screenSize)
-		{
-			using (var context = new DataContext())
-			{
-				var products = context.EProducts.Include("Images").AsQueryable();
-
-
-				if (!string.IsNullOrEmpty(division))
-				{
-					products = products
-							  .Include(i => i.ProductDivisions)
-							  .ThenInclude(i => i.Division)
-							  .Where(i => i.ProductDivisions.Any(a => a.Division.CategoryName.ToLower() == division.ToLower()));
-				}
-
-				return products.Skip((screen - 1) * screenSize).Take(screenSize).ToList();
-			}
-		}
 		public override List<EProduct> GetAll(Expression<Func<EProduct, bool>> filter = null)
 		{
 			using (var context = new DataContext())

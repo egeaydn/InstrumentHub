@@ -38,11 +38,6 @@ namespace Instrument.Business.Concrate
 			return _eproductDal.GetbyId(id);
 		}
 
-		public int GetCountByCategory(string category)
-		{
-			return _eproductDal.GetCountByDivision(category);
-		}
-
 		public int GetCountByDivision(string division)
 		{
 			return _eproductDal.GetCountByDivision(division);

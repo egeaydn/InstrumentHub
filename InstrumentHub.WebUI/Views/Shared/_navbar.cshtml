@@ -2,15 +2,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
     <div class="container">
-        <!-- Marka -->
-        <a class="navbar-brand fw-bold" href="#">InstrumentHub</a>
-        <!-- Toggler -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- Menü -->
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <!-- Sol Menü -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
@@ -42,13 +37,11 @@
                     }
                 }
             </ul>
-            <!-- Sağ Menü -->
             <ul class="navbar-nav ms-auto">
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="container-fluid">
                         <ul class="navbar-nav">
-                            <!-- Badge -->
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Basket" asp-action="Home">
                                     <span id="basket-count" class="badge badge-pill bg-warning">0</span>
@@ -114,7 +107,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    updateBasketCount(); // Sepet sayısını güncelle
+                    updateBasketCount(); 
                 }
             })
             .catch(error => console.error('Error adding to basket:', error));
