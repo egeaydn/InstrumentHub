@@ -6,12 +6,366 @@
 
 <link href="~/css/productDetails.css" rel="stylesheet" />
 
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+
+    .product-detail {
+        margin: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    .top-image {
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .top-image:hover {
+            transform: scale(1.07);
+        }
+
+    .thumb-image {
+        width: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+        .thumb-image:hover {
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            transform: scale(1.15);
+        }
+
+    .product-detail h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .text-primary {
+        font-size: 1.6rem;
+        color: #ff6600;
+        font-weight: bold;
+    }
+
+    a.btn-link {
+        font-size: 1rem;
+        color: #ff6600;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+        a.btn-link:hover {
+            text-decoration: underline;
+            color: #cc5200;
+        }
+
+    .cart-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    input.quantity {
+        width: 60px;
+        padding: 8px;
+        text-align: center;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+    }
+
+    button.btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 18px;
+        font-size: 1rem;
+        border-radius: 25px;
+        background-color: #ff6600;
+        color: #fff;
+        transition: background-color 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none;
+    }
+
+        button.btn:hover {
+            background-color: #cc5200;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    .nav-tabs {
+        border-bottom: 2px solid #dee2e6;
+        margin-bottom: 20px;
+    }
+
+    .tab-on{
+		font-size:15p;
+        font-weight:700;
+		color: #495057;
+		border: none;
+		border-radius: 8px;
+		margin-right: 10px;
+		padding: 12px 18px;
+		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+        .tab-on-des{
+
+        }
+
+        .nav-tabs .nav-link {
+            font-size: 1rem;
+            color: #495057;
+            border: none;
+            border-radius: 8px;
+            margin-right: 10px;
+            padding: 12px 18px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+            .nav-tabs .nav-link.active {
+                background-color: #ff6600;
+                color: #fff;
+            }
+
+            .nav-tabs .nav-link:hover {
+                background-color: #cc5200;
+                color: #fff;
+            }
+
+    .tab-content {
+        padding: 25px;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+
+
+    .related-products .card {
+        margin: 15px 10px;
+        border-radius: 12px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .related-products .card-img-top {
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .product-card {
+        border: 1px solid #f0f0f0;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-img-wrapper {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+    }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card-img-wrapper:hover img {
+            transform: scale(1.1);
+        }
+
+    .product-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .product-brand {
+        font-size: 1rem;
+        color: #757575;
+        margin: 6px 0;
+    }
+
+    .product-price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #ff6600;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        background-color: #fafafa;
+        border-radius: 0 0 10px 10px;
+    }
+
+        .card-footer .btn {
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+
+        .card-footer .btn-outline-primary {
+            border-color: #ff6600;
+            color: #ff6600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            .card-footer .btn-outline-primary:hover {
+                background-color: #ff6600;
+                color: #fff;
+            }
+
+    .product-card {
+        width: 77%;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 0px;
+        position: relative;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    .card-img-wrapper {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+
+    .product-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px 0;
+        color: black;
+        font-weight: bold;
+    }
+
+    .product-description {
+        font-size: 14px;
+        color: #757575;
+        margin-bottom: 10px;
+        max-height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .product-brand {
+        font-size: 0.85rem;
+        color: #777;
+        margin-bottom: 8px;
+    }
+
+    .product-price {
+        font-size: 18px;
+        color: #ff4500;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+
+    .card-footer {
+        padding: 5px;
+        background: #fafafa;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .add-to-cart {
+        font-size: 14px;
+        font-weight: bold;
+        background: orange;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        transition: 0.3s;
+        width: 100%;
+        cursor: pointer;
+    }
+
+        .add-to-cart:hover {
+            background: darkorange;
+            transform: scale(1.05);
+        }
+
+    .badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: orange;
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .rating {
+        color: gold;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .sold-count {
+        font-size: 0.85rem;
+        color: #ffff;
+        margin-bottom: 0px;
+        background-color: orangered;
+        -webkit-border-top-left-radius: 20px;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-radius-topleft: 20px;
+        -moz-border-radius-topright: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    } 
+</style>
+
 <div class="row product-detail">
-    <!-- Sol taraf (Görseller) -->
     <div class="col-md-3">
         <div class="row">
             <div class="col-md-12 mb-3">
-                @* Ürün görseli kontrolü *@
                 @{
                     var image = Model.EProduct.Images.Find(img => img.EProductId == Model.EProduct.Id);
                 }
@@ -26,7 +380,6 @@
             </div>
         </div>
         <div class="row">
-            @* Küçük görseller *@
             @foreach (var img in Model.EProduct.Images)
             {
                 <div class="col-md-3 mb-3">
@@ -36,19 +389,18 @@
         </div>
     </div>
 
-    <!-- Sağ taraf (Ürün Detayları) -->
     <div class="col-md-9">
         <h1 class="product-title mb-3">@Model.EProduct.Name</h1>
         <hr />
         <br />
-        @* Kategoriler *@
         @foreach (var category in Model.Divisions)
         {
             <a href="#" class="btn btn-link category-link">@category.CategoryName</a>
         }
         <div class="product-price-section mb-3">
-            <h4 class="text-primary mb-3">@Model.EProduct.Price TL</h4>
-            @* Sepet ekleme formu *@
+            <h4 class="text-warning mb-3 fw-bold">@Model.EProduct.Price TL</h4>
+            <p class="tab-on">@Model.EProduct.Brand</p>
+            <p class="tab-on"> @Html.Raw(Model.EProduct.Description)</p>
             @if (!User.IsInRole("admin") && User.Identity.IsAuthenticated)
             {
                 <form asp-controller="Basket" asp-action="AddToBasket" method="POST">
@@ -68,7 +420,6 @@
     </div>
 </div>
 
-<!-- Tab yapısı -->
 <div class="row">
     <ul class="nav nav-tabs mt-2 product-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -96,41 +447,42 @@
         @foreach (var product in Model.RelatedProducts)
         {
             <div class="col-md-4 col-lg-3 mt-3">
-                <div class="card product-card shadow-sm">
-                    <!-- Tıklanabilir Alan -->
+                <div class=" product-card ">
                     <a asp-controller="Sales" asp-action="Details" asp-route-id="@product.Id" class="text-decoration-none">
-                        <!-- Ürün Resmi -->
                         <div class="card-img-wrapper">
                             <img src="~/img/@(product.Images.FirstOrDefault()?.ImageUrl ?? "placeholder.jpg")"
                                  class="card-img-top"
                                  alt="@product.Name">
                         </div>
-                        <!-- Kart Gövdesi -->
                         <div class="card-body text-center">
-                            <h5 class="product-title text-dark">
-                                @product.Name
-                            </h5>
+                            <h5 class="product-title ">@product.Name</h5>
+                            <p class="product-description">@product.Description</p>
                             <p class="product-brand">@product.Brand</p>
+
                             <div class="product-price">
-                                <span>@product.Price TL</span>
+                                <span>@product.Price ₺</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
                             </div>
                         </div>
                     </a>
-                    <!-- Kart Alt Bölümü (Tıklanamaz Alan) -->
-                    <div class="card-footer d-flex justify-content-between align-items-center bg-light">
-                        @if (User.Identity.IsAuthenticated && !User.IsInRole("admin"))
-                        {
-                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
-                                <input type="hidden" name="productId" value="@product.Id" />
-                                <input type="hidden" name="quantity" value="1" />
-                                <button type="submit" class="btn btn-success btn-sm">
-                                    <i class="bi bi-cart-plus"></i> Add To Cart
-                                </button>
-                            </form>
-                        }
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole("admin"))
+                    {
+                        <form asp-controller="Basket" asp-action="AddToBasket" method="post" class="d-inline">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Sepete Ekle
+                            </button>
+                        </form>
+                    }
                     </div>
                 </div>
-            </div>
         }
     </div>
 </div>
