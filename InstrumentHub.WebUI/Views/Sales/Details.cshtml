@@ -325,11 +325,30 @@
         cursor: pointer;
     }
 
+    .btn-buynow{
+        font-size: 14px;
+        font-weight: bold;
+        background: green;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 23px;
+        transition: 0.3s;
+        margin-top:10px;
+        width: 43%;
+        height: 47px;
+        cursor: pointer;
+    }
+
         .add-to-cart:hover {
             background: darkorange;
             transform: scale(1.05);
         }
 
+        .btn-buynow:hover {
+            background: darkgreen;
+            transform: scale(1.05);
+        }
     .badge {
         position: absolute;
         top: 10px;
@@ -405,17 +424,22 @@
             {
                 <form asp-controller="Basket" asp-action="AddToBasket" method="POST">
                     <input type="hidden" name="productId" value="@Model.EProduct.Id" />
+                    <input type="hidden" name="quantity" value="1" />
+
                     <div class="input-group cart-group">
-                        <input type="number" name="quantity" value="1" min="1" step="1" class="form-control quantity" />
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-outline-primary btn-md add-to-cart-btn">
-                                <i class="fas fa-cart-plus"></i>
-                                Add To Cart
-                            </button>
-                        </div>
+                        <button type="submit" name="action" value="addToCart" class="btn btn-outline-primary btn-md add-to-cart-btn">
+                            <i class="fas fa-cart-plus"></i> Add To Cart
+                        </button>
+                    </div>
+
+                    <div class="input-group cart-group ">
+                        <button type="submit" name="action" value="buyNow" class=" btn-md btn-buynow">
+                            Şimdi Al
+                        </button>
                     </div>
                 </form>
             }
+
         </div>
     </div>
 </div>

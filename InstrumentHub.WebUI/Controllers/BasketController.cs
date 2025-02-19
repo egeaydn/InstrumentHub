@@ -49,11 +49,18 @@ namespace InstrumentHub.WebUI.Controllers
 				}
 			);
 		}
-		public IActionResult AddToBasket(int productId, int quantity)
+		public IActionResult AddToBasket(int productId, int quantity, string action = "addToCart")
 		{
 			_cartService.AddToCart(_usermanager.GetUserId(User), productId, quantity);
+
+			if (action == "buyNow")// valuesini buyNow yaptım
+			{
+				return RedirectToAction("Checkout", "Basket");
+			}
+
 			return RedirectToAction("Home");
 		}
+
 
 
 		[HttpPost]
