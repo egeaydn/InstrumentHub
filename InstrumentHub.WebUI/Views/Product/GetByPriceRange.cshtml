@@ -1,0 +1,19 @@
+﻿@model List<InstrumentHub.Entites.EProduct>
+
+<h2>Fiyat Aralığına Göre Ürünler</h2>
+
+<table>
+    <tr>
+        <th>Ürün Adı</th>
+        <th>Fiyat</th>
+        <th>Marka</th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Price ₺</td>
+            <td>@product.Brand</td>
+        </tr>
+    }
+</table>

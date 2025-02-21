@@ -4,7 +4,192 @@
 @{
     ViewData["title"] = "Cart";
 }
-<link href="~/css/basket.css" rel="stylesheet" />
+
+<style>
+    :root {
+        --primary-color: #2980b9;
+        --primary-hover: #1c5980;
+        --danger-color: #c0392b;
+        --danger-hover: #992d22;
+        --background-color: #f5f7fa;
+        --text-color: #333;
+        --heading-color: #2c3e50;
+        --table-header-bg: #34495e;
+        --table-row-border: #ecf0f1;
+        --white: #fff;
+    }
+
+    body {
+        background: var(--background-color);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: var(--heading-color);
+        font-weight: 300;
+        font-size: 36px;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background: var(--heading-color);
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .table {
+        background: var(--white);
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .table thead th {
+            background: var(--table-header-bg);
+            color: var(--white);
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            padding: 15px;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid var(--table-row-border);
+            transition: background-color 0.3s ease;
+        }
+
+            .table tbody tr:hover {
+                background-color: #f9f9f9;
+            }
+
+        .table th,
+        .table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+
+        .table img {
+            border-radius: 4px;
+            border: 1px solid var(--table-row-border);
+            width: 80px;
+            display: block;
+        }
+
+    .btn {
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn:focus {
+            outline: none;
+        }
+
+    .btn-primary {
+        background: var(--primary-color);
+        color: var(--white);
+    }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+    .btn-danger {
+        background: var(--danger-color);
+        color: var(--white);
+    }
+
+        .btn-danger:hover {
+            background: var(--danger-hover);
+            transform: scale(1.02);
+        }
+
+    .text-center h4,
+    .text-left h4 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: var(--heading-color);
+        border-bottom: 2px solid var(--table-header-bg);
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .empty-cart {
+        text-align: center;
+        padding: 40px;
+        background: var(--white);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+
+        .empty-cart h2 {
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .empty-cart p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+    .alert-warning {
+        background: #f39c12;
+        color: var(--white);
+        padding: 20px;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    {
+        flex-direction: column;
+    }
+
+    .col-md-8,
+    .col-md-4 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-top: 20px;
+    }
+
+    .table thead th {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .table tbody tr,
+    .table tbody td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    }
+</style>
+
 <h1>Cart</h1>
 <hr />
 <div class="row">

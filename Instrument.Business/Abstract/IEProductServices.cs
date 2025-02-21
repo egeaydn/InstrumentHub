@@ -17,5 +17,7 @@ namespace Instrument.Business.Abstract
 		void Update(EProduct entity, int[] divisionIds);
 		void Delete(EProduct entity);
 		int GetCountByDivision(string division);
+		public List<EProduct> GetProductsByPriceRange(decimal minPrice, decimal maxPrice);
+
 	}
 }

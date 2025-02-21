@@ -8,18 +8,25 @@
 <div class="row d-flex justify-content-center">
     <div >
 
-        @await Component.InvokeAsync("CategoryList")
+        @await Component.InvokeAsync("CategoryList") @*Burada companente gelen kategorileri sırayla listeleyim hıme sayfasında gösteriyoruz*@
     </div>
 
-    <div class=col-md-12 "d-flex justify-content-center">
-        <img src="~/img/Slider1.jpeg" alt="Alternate Text" />
+    <div class="filter-form" style="margin-bottom: 20px; text-align: center;">
+        <form method="get" action="@Url.Action("GetByPriceRange", "Product")">
+            <label for="minPrice">Min Fiyat:</label>
+            <input type="number" id="minPrice" name="minPrice" placeholder="Min Fiyat" required />
+            <label for="maxPrice">Max Fiyat:</label>
+            <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Fiyat" required />
+            <button type="submit">Filtrele</button>
+        </form>
     </div>
+
+
+
+        <h1 style="text-align:center; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:orange;">Welcome To InstrumentHub</h1>
 
     <div class="row mt-5">
-
-       
         <div>
-
             <div class="row">
                 @if (Model.EProducts != null && Model.EProducts.Count > 0)
                 {
@@ -32,12 +39,10 @@
                 {
                     <p>Ürün Bulanamadı.</p>
                 }
-
             </div>
-
         </div>
-
     </div>
+
 
 </div>
 

@@ -4,12 +4,233 @@
     ViewData["title"] = "Checkout";
 }
 
-<link href="~/css/checkout.css" rel="stylesheet" />
+<style>
+    :root {
+        --primary-color: #2980b9;
+        --primary-hover: #1c5980;
+        --danger-color: #c0392b;
+        --danger-hover: #992d22;
+        --background-color: #f5f7fa;
+        --white: #fff;
+        --text-color: #333;
+        --heading-color: #2c3e50;
+        --border-color: #ecf0f1;
+    }
+
+    body {
+        background: var(--background-color);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: var(--heading-color);
+        font-size: 36px;
+        font-weight: 300;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background: var(--heading-color);
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    /* Form ve genel alan stili */
+    form {
+        background: var(--white);
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Grid sistemine benzer yapı */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -10px;
+    }
+
+    .col-md-8,
+    .col-md-4 {
+        padding: 10px;
+    }
+
+    .col-md-8 {
+        flex: 0 0 66.6667%;
+        max-width: 66.6667%;
+    }
+
+    .col-md-4 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+
+    
+    {
+        flex-direction: column;
+    }
+
+    .col-md-8,
+    .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    }
+
+    /* Bölüm başlıkları */
+    h4 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: var(--heading-color);
+        border-bottom: 2px solid var(--primary-color);
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    /* Form elemanları */
+    .form-control {
+        width: 100%;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+        margin-bottom: 10px;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+        }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    /* Doğrulama ve hata mesajları */
+    .text-danger {
+        color: var(--danger-color);
+        font-size: 14px;
+    }
+
+    /* Ödeme alanı */
+    #payment-box {
+        background: var(--white);
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin-top: 20px;
+    }
+
+    /* Özel kontrol (checkbox, radio) stili */
+    .custom-control {
+        margin-bottom: 15px;
+    }
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .custom-control-label {
+        margin-left: 5px;
+    }
+
+    /* Sepet özet listelemesi (list-group) */
+    .list-group {
+        background: var(--white);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 0;
+        margin-bottom: 20px;
+        list-style: none;
+    }
+
+    .list-group-item {
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+    /* Buton stili */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+    }
+
+        .btn:focus {
+            outline: none;
+        }
+
+    .btn-primary {
+        background: var(--primary-color);
+        color: var(--white);
+    }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+    /* Büyük butonlar */
+    .btn-lg {
+        font-size: 18px;
+        padding: 15px 20px;
+        width: 100%;
+    }
+
+    /* Yardımcı margin sınıfları */
+    .mb-3 {
+        margin-bottom: 1rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .my-3 {
+        margin: 1rem 0;
+    }
+
+</style>
+
 
 <div class="container">
     <h1>Checkout</h1>
     <hr />
-    <!-- Genel doğrulama mesajlarını burada listeleyebilirsiniz -->
+        
     <div asp-validation-summary="All" class="text-danger"></div>
     <form action="/checkout" method="POST">
         <div class="row">

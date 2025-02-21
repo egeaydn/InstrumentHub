@@ -58,5 +58,9 @@ namespace Instrument.Business.Concrate
 			_eproductDal.Update(entity, divisionIds);
 		}
 
+		public List<EProduct> GetProductsByPriceRange(decimal minPrice, decimal maxPrice)
+		{
+			return _eproductDal.GetAll(p => p.Price >= minPrice && p.Price <= maxPrice); // Fiyat aralığını filtrele
+		}
 	}
 }

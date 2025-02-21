@@ -11,5 +11,6 @@ namespace Instrument.Business.Abstract
 	{
 		List<Order> GetOrders(string userId);
 		void Create(Order entity);
+
 	}
 }

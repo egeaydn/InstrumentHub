@@ -48,11 +48,19 @@
         font-size: 14px;
         color: #757575;
         margin-bottom: 10px;
-        max-height: 40px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; /* Maksimum 2 satır göster */
         overflow: hidden;
+        max-height: 2.8em; /* 2 satır yüksekliği kadar alan belirle */
+        line-height: 1.4em; /* Satır yüksekliği */
         text-overflow: ellipsis;
-        white-space: nowrap;
+        white-space: normal;
     }
+
+
+
+
 
     .product-brand {
         font-size: 0.85rem;
@@ -140,7 +148,16 @@
             </div>
             <div class="card-body text-center">
                 <h5 class="product-title ">@Model.Name</h5>
-                <p class="product-description">@Model.Description</p>
+                @using System.Web;
+
+                @{
+                    var plainText = HttpUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Replace(Model.Description, "<.*?>", ""));
+                }
+                <p class="product-description">@plainText</p> 
+                @*
+                    yukarıda descriptionun içinde gelen hyml etiketlerinin temizlemesini saglıyor
+                *@
+    
                 <p class="product-brand">@Model.Brand</p>
 
                 <div class="product-price">

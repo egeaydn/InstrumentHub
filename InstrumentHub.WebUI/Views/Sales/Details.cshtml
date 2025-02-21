@@ -1,4 +1,5 @@
 ﻿@using Instrument.WebUI.Models
+@using System.Web
 @model EProductDetailModel
 @{
     ViewData["title"] = "Eproduct Detail";
@@ -338,6 +339,7 @@
         width: 43%;
         height: 47px;
         cursor: pointer;
+        font-family: 'Arial', sans-serif;
     }
 
         .add-to-cart:hover {
@@ -434,7 +436,7 @@
 
                     <div class="input-group cart-group ">
                         <button type="submit" name="action" value="buyNow" class=" btn-md btn-buynow">
-                            Şimdi Al
+                            <i class="fa-solid fa-basket-shopping"></i> Şimdi Al
                         </button>
                     </div>
                 </form>
@@ -466,7 +468,7 @@
 </div>
 
 <div class="row related-products">
-    <h3>Benzer Ürünler</h3>
+    <h3>Similar Products</h3>
     <div class="row">
         @foreach (var product in Model.RelatedProducts)
         {
@@ -480,7 +482,10 @@
                         </div>
                         <div class="card-body text-center">
                             <h5 class="product-title ">@product.Name</h5>
-                            <p class="product-description">@product.Description</p>
+                            @{
+                                var plainText = HttpUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Replace(Model.EProduct.Description, "<.*?>", ""));
+                            }
+                            <p class="product-description">@plainText</p>
                             <p class="product-brand">@product.Brand</p>
 
                             <div class="product-price">
