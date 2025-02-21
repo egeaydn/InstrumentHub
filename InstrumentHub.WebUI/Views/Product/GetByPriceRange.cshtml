@@ -1,6 +1,8 @@
-﻿@model List<InstrumentHub.Entites.EProduct>
+﻿@using Instrument.WebUI.Models
+@model EProductListModel
 
 <h2>Fiyat Aralığına Göre Ürünler</h2>
+<p>@(Model?.EProducts?.Count ?? 0) ürün bulundu.</p>
 
 <table>
     <tr>
@@ -8,7 +10,7 @@
         <th>Fiyat</th>
         <th>Marka</th>
     </tr>
-    @foreach (var product in Model)
+    @foreach (var product in Model.EProducts)
     {
         <tr>
             <td>@product.Name</td>

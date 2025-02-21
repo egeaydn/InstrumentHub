@@ -13,25 +13,27 @@ namespace InstrumentHub.WebUI.Controllers
 			_productService = productService;
 		}
 
+		// Tüm ürünleri getir
 		public IActionResult Index()
 		{
-			var products = _productService.GetAll();
-			return View(products);
+			var model = new EProductListModel
+			{
+				EProducts = _productService.GetAll() // Modeli doğru şekilde set ettik
+			};
+			return View(model);
 		}
 
+		// Belirli fiyat aralığında ürünleri getir
 		public IActionResult GetByPriceRange(decimal minPrice, decimal maxPrice)
 		{
-			// Fiyat aralığı kontrolü (minPrice < maxPrice)
 			if (minPrice > maxPrice)
 			{
 				TempData["Error"] = "Minimum fiyat, maksimum fiyattan büyük olamaz.";
-				return RedirectToAction("Index"); // Hata durumunda ana sayfaya yönlendir
+				return RedirectToAction("Index");
 			}
 
-			// Fiyat aralığında ürünleri getir
 			var productsInRange = _productService.GetProductsByPriceRange(minPrice, maxPrice);
 
-			// Ürünler boşsa hata mesajı ekleyelim
 			if (productsInRange == null || productsInRange.Count == 0)
 			{
 				TempData["Error"] = "Bu fiyat aralığında ürün bulunamadı.";
@@ -42,7 +44,9 @@ namespace InstrumentHub.WebUI.Controllers
 				EProducts = productsInRange
 			};
 
-			return View("Index", model); // Fiyat aralığına göre filtrelenmiş ürünleri Index sayfasına gönder
+			return View("Index", model); // **Burada View içine model gönderiyoruz!**
 		}
+
+
 	}
 }

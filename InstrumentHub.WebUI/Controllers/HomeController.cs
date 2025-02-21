@@ -30,5 +30,27 @@ namespace InstrumentHub.WebUI.Controllers
 				EProducts = products,
 			});
 		}
+		public IActionResult FilterByPrice(decimal minPrice, decimal maxPrice)
+		{
+			if (minPrice > maxPrice)
+			{
+				TempData["Error"] = "Minimum fiyat, maksimum fiyattan büyük olamaz.";
+				return RedirectToAction("Index");
+			}
+
+			var productsInRange = _productServices.GetProductsByPriceRange(minPrice, maxPrice);
+
+			if (productsInRange == null || productsInRange.Count == 0)
+			{
+				TempData["Error"] = "Bu fiyat aralýðýnda ürün bulunamadý.";
+			}
+
+			var model = new EProductListModel
+			{
+				EProducts = productsInRange
+			};
+
+			return View("Index", model);  // **Home/Index'e yönlendiriyoruz**
+		}
 	}
 }

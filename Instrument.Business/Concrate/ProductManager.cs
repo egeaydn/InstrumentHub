@@ -60,7 +60,7 @@ namespace Instrument.Business.Concrate
 
 		public List<EProduct> GetProductsByPriceRange(decimal minPrice, decimal maxPrice)
 		{
-			return _eproductDal.GetAll(p => p.Price >= minPrice && p.Price <= maxPrice); // Fiyat aralığını filtrele
+			return _eproductDal.GetAll(p => p.Price >= minPrice && p.Price <= maxPrice); 
 		}
 	}
 }

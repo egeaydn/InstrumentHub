@@ -1,4 +1,9 @@
-﻿<form asp-action="GetByPriceRange" method="get">
+﻿@using Instrument.WebUI.Models
+@model EProductListModel
+
+<p>Filtrelenen Ürün Sayısı: @(Model?.EProducts?.Count ?? 0)</p>
+
+<form asp-action="GetByPriceRange" method="get">
     <label>Min Fiyat:</label>
     <input type="number" name="minPrice" required />
 
