@@ -27,6 +27,11 @@ namespace Instrument.Business.Concrate
 			_commentDal.Delete(entity);
 		}
 
+		public double GetAverageRating(int eproductId)
+		{
+			return _commentDal.GetAverageRating(eproductId);
+		}
+
 		public Comment GetById(int id)
 		{
 			return _commentDal.GetbyId(id);
@@ -36,5 +41,10 @@ namespace Instrument.Business.Concrate
 		{
 			_commentDal.Update(entity);
 		}
+		public List<Comment> GetCommentsByProductId(int eproductId)
+		{
+			return _commentDal.GetCommetsByProductId(eproductId);
+		}
+
 	}
 }

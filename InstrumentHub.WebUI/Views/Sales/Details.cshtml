@@ -421,6 +421,7 @@
         <div class="product-price-section mb-3">
             <h4 class="text-warning mb-3 fw-bold">@Model.EProduct.Price TL</h4>
             <p class="tab-on">@Model.EProduct.Brand</p>
+            <p>Avarage Point: @ViewBag.AverageRating / 5</p>
             <p class="tab-on"> @Html.Raw(Model.EProduct.Description)</p>
             @if (!User.IsInRole("admin") && User.Identity.IsAuthenticated)
             {
@@ -519,3 +520,30 @@
 @section Scripts {
     <script src="~/js/Comment.js"></script>
 }
+
+<script>
+    function doComment(btn, action, commentId, textInputId) {
+        let commentText = document.getElementById("new_comment_text").value.trim();
+        let ratingValue = document.getElementById("new_comment_rating").value; // ⭐ Seçilen rating'i al
+
+        if (commentText === "") {
+            alert("Lütfen bir yorum girin.");
+            return;
+        }
+
+        $.ajax({
+            url: "/Comment/Create",
+            type: "POST",
+            data: {
+                Text: commentText,
+                Rating: ratingValue,  // ⭐ Backend'e rating gönder
+                productId: @Model.EProduct.Id  // Eğer varsa ürüne ait ID gönder
+            },
+            success: function (response) {
+                if (response.result) {
+                    location.reload();  // Yorum eklendiğinde sayfayı yenile
+                }
+            }
+        });
+    }
+</script>

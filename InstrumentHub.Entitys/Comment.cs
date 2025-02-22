@@ -14,6 +14,7 @@ namespace InstrumentHub.Entites
 		public string CommentText { get; set; }
 		public int EProductId { get; set; }
 		public EProduct EProduct { get; set; }
+		public int Rating { get; set; }
 		public string UserId { get; set; }
 		public DateTime CommentCreateOn { get; set; } 
 

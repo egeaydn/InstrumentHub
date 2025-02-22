@@ -51,6 +51,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 		public IActionResult Create(CommentModel model, int? productId)
 		{
+
 			ModelState.Remove("UserId");
 			if (ModelState.IsValid)
 			{
@@ -72,6 +73,7 @@ namespace InstrumentHub.WebUI.Controllers
 					CommentCreateOn = DateTime.Now,
 					UserId = _userManager.GetUserId(User) ?? "0",
 					CommentText = model.Text.Trim('\n').Trim(' '),
+					Rating = model.Rating 
 				};
 
 				_commentServices.Create(comment);
@@ -81,6 +83,8 @@ namespace InstrumentHub.WebUI.Controllers
 
 			return View(model);
 		}
+
+
 		public IActionResult Edit(int? id, string text)
 		{
 
@@ -122,9 +126,28 @@ namespace InstrumentHub.WebUI.Controllers
 
 			_commentServices.Delete(comment);
 
-			return Json(new { result = true });
-
+			return Json(new { result = true });	
 		}
+
+		public IActionResult GetComments(int productId)
+		{
+			var comments = _commentServices.GetCommentsByProductId(productId);
+
+			var users = new Dictionary<string, string>();
+			foreach (var comment in comments)
+			{
+				if (!users.ContainsKey(comment.UserId))
+				{
+					var user = _userManager.FindByIdAsync(comment.UserId).Result;
+					users[comment.UserId] = user?.UserName;
+				}
+			}
+
+			ViewBag.Usernames = users;
+			return PartialView("_PartialComments", comments);
+		}
+
+
 
 	}
 }

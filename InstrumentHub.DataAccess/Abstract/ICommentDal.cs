@@ -9,6 +9,7 @@ namespace InstrumentHub.DataAccess.Abstract
 {
 	public interface ICommentDal : IRepository<Comment>
 	{
-
+		List<Comment> GetCommetsByProductId(int productId);
+		double GetAverageRating(int productId);
 	}
 }

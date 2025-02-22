@@ -13,5 +13,7 @@ namespace Instrument.Business.Abstract
 		void Create(Comment entity);
 		void Update(Comment entity);
 		void Delete(Comment entity);
+		double GetAverageRating(int eproductId);
+		List<Comment> GetCommentsByProductId(int eproductId);
 	}
 }
