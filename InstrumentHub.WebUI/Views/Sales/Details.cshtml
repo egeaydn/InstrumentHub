@@ -520,30 +520,3 @@
 @section Scripts {
     <script src="~/js/Comment.js"></script>
 }
-
-<script>
-    function doComment(btn, action, commentId, textInputId) {
-        let commentText = document.getElementById("new_comment_text").value.trim();
-        let ratingValue = document.getElementById("new_comment_rating").value; // ⭐ Seçilen rating'i al
-
-        if (commentText === "") {
-            alert("Lütfen bir yorum girin.");
-            return;
-        }
-
-        $.ajax({
-            url: "/Comment/Create",
-            type: "POST",
-            data: {
-                Text: commentText,
-                Rating: ratingValue,  // ⭐ Backend'e rating gönder
-                productId: @Model.EProduct.Id  // Eğer varsa ürüne ait ID gönder
-            },
-            success: function (response) {
-                if (response.result) {
-                    location.reload();  // Yorum eklendiğinde sayfayı yenile
-                }
-            }
-        });
-    }
-</script>

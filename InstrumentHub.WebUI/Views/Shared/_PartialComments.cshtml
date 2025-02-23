@@ -74,3 +74,35 @@ else
         Yorum Yapılmamıştır. İlk yorumu yapmak ister misin?
     </div>
 }
+
+<script>
+    function doComment(button, action, commentId, commentTextSelector) {
+        var text = "";
+        var rating = 0;
+
+        if (action === "new_clicked") {
+            text = document.getElementById("new_comment_text").value;
+            rating = document.getElementById("new_comment_rating").value;  // ⭐ Rating değerini al
+        } else if (action === "edit_clicked") {
+            text = document.querySelector(commentTextSelector).innerText;
+        }
+
+           $.ajax({
+        url: "/Comment/" + (action === "new_clicked" ? "Create" : action === "edit_clicked" ? "Edit" : "Delete"),
+        type: "POST",
+        data: {
+            text: text,
+            productId: @ViewBag.ProductId, // Eğer Create için productId gerekiyorsa
+            id: commentId,
+            rating: rating  // ⭐ Rating değerini backend'e gönder
+        },
+        success: function (response) {
+            if (response.result) {
+                location.reload();
+            }
+        }
+    });
+
+    }
+
+</script>

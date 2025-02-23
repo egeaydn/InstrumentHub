@@ -51,6 +51,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 		public IActionResult Create(CommentModel model, int? productId)
 		{
+			Console.WriteLine($"Gelen Rating Değeri: {model.Rating}"); 
 
 			ModelState.Remove("UserId");
 			if (ModelState.IsValid)
@@ -73,7 +74,7 @@ namespace InstrumentHub.WebUI.Controllers
 					CommentCreateOn = DateTime.Now,
 					UserId = _userManager.GetUserId(User) ?? "0",
 					CommentText = model.Text.Trim('\n').Trim(' '),
-					Rating = model.Rating 
+					Rating = model.Rating
 				};
 
 				_commentServices.Create(comment);
@@ -83,6 +84,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 			return View(model);
 		}
+
 
 
 		public IActionResult Edit(int? id, string text)
