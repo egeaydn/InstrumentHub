@@ -76,33 +76,50 @@ else
 }
 
 <script>
-    function doComment(button, action, commentId, commentTextSelector) {
+       function doComment(button, action, commentId, commentTextSelector) {
         var text = "";
         var rating = 0;
 
-        if (action === "new_clicked") {
-            text = document.getElementById("new_comment_text").value;
-            rating = document.getElementById("new_comment_rating").value;  // ⭐ Rating değerini al
-        } else if (action === "edit_clicked") {
-            text = document.querySelector(commentTextSelector).innerText;
+        if (action === "new_clicked") { // 🟢 Yeni yorum ekleme işlemi
+            text = $("#new_comment_text").val().trim();
+            rating = parseInt($("#new_comment_rating").val()) || 0;
+        } else if (action === "edit_clicked") { // 🟢 Yorum düzenleme işlemi
+            text = $(commentTextSelector).text().trim();
         }
 
-           $.ajax({
-        url: "/Comment/" + (action === "new_clicked" ? "Create" : action === "edit_clicked" ? "Edit" : "Delete"),
-        type: "POST",
-        data: {
-            text: text,
-            productId: @ViewBag.ProductId, // Eğer Create için productId gerekiyorsa
-            id: commentId,
-            rating: rating  // ⭐ Rating değerini backend'e gönder
-        },
-        success: function (response) {
-            if (response.result) {
-                location.reload();
+        // 🔴 Silme işleminde `text` kontrol edilmemeli!
+        if (!text && action !== "delete_clicked") {
+            alert("Lütfen bir yorum girin.");
+            return;
+        }
+
+        console.log("Gönderilen yorum:", text);
+        console.log("Ürün ID:", productId);
+        console.log("Rating:", rating);
+
+        $.ajax({
+            url: "/Comment/" + (action === "new_clicked" ? "Create" : action === "edit_clicked" ? "Edit" : "Delete"),
+            type: "POST",
+            data: {
+                text: text, // 🟢 Yeni ekleme ve düzenleme için yorum metni gönderilir
+                productId: productId,
+                id: commentId, // 🟢 Silme işleminde sadece ID gereklidir
+                rating: rating
+            },
+            success: function (response) {
+                console.log("Sunucudan Gelen Cevap:", response);
+                if (response.result) {
+                    location.reload();
+                } else {
+                    alert("İşlem başarısız.");
+                }
+            },
+            error: function (error) {
+                console.error("AJAX Hatası:", error);
+                alert("Sunucu hatası!");
             }
-        }
-    });
-
+        });
     }
+
 
 </script>

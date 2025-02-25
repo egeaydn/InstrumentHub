@@ -51,7 +51,8 @@ namespace InstrumentHub.WebUI.Controllers
 
 		public IActionResult Create(CommentModel model, int? productId)
 		{
-			Console.WriteLine($"Gelen Rating Değeri: {model.Rating}"); 
+			Console.WriteLine($"Gelen Text: {model.Text}");
+			Console.WriteLine($"Gelen Rating Değeri: {model.Rating}");
 
 			ModelState.Remove("UserId");
 			if (ModelState.IsValid)
@@ -67,6 +68,9 @@ namespace InstrumentHub.WebUI.Controllers
 				{
 					return NotFound();
 				}
+
+				// Burada rating değeri kontrol ediliyor
+				
 
 				Comment comment = new Comment()
 				{
@@ -84,6 +88,7 @@ namespace InstrumentHub.WebUI.Controllers
 
 			return View(model);
 		}
+
 
 
 
