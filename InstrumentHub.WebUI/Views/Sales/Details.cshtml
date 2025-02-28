@@ -70,6 +70,21 @@
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     }
 
+    .category-link{
+		font-size: 1rem;
+		color: orange;
+		border: none;
+		border-radius: 8px;
+		margin-right: 10px;
+		padding: 12px 18px;
+		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+		text-decoration: none;
+    }
+
+		.category-link:hover{
+            color: #ff6600;
+		}
+
     .nav-tabs {
         border-bottom: 2px solid #dee2e6;
         margin-bottom: 20px;
@@ -212,10 +227,11 @@
         color: white;
         border: none;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 17px;
         transition: 0.3s;
-        width: 100%;
+        width: 50%;
         cursor: pointer;
+        height: 47px;
     }
 
     .btn-buynow{
@@ -225,10 +241,10 @@
         color: white;
         border: none;
         padding: 10px;
-        border-radius: 23px;
+        border-radius: 17px;
         transition: 0.3s;
         margin-top:10px;
-        width: 43%;
+        width: 50%;
         height: 47px;
         cursor: pointer;
         font-family: 'Arial', sans-serif;
@@ -248,6 +264,12 @@
         color: gold;
         font-size: 14px;
         margin-bottom: 10px;
+    }
+
+    .btn-price{
+		color: #ff6600;
+        font-weight: bold;
+		font-family: 'Arial', sans-serif;
     }
 
 </style>
@@ -279,40 +301,40 @@
         </div>
     </div>
 
-    <div class="col-md-9">
-        <h1 class="product-title mb-3">@Model.EProduct.Name</h1>
-        <hr />
-        <br />
-        @foreach (var category in Model.Divisions)
-        {
-            <a href="#" class="btn btn-link category-link">@category.CategoryName</a>
-        }
-        <div class="product-price-section mb-3">
-            <h4 class="text-warning mb-3 fw-bold">@Model.EProduct.Price TL</h4>
-            <p class="tab-on">@Model.EProduct.Brand</p>
-            <p class="tab-on"> @Html.Raw(Model.EProduct.Description)</p>
-            @if (!User.IsInRole("admin") && User.Identity.IsAuthenticated)
+        <div class="col-md-9">
+            <h1 class="product-title mb-3">@Model.EProduct.Name</h1>
+            <hr />
+            <br />
+            @foreach (var category in Model.Divisions)
             {
-                <form asp-controller="Basket" asp-action="AddToBasket" method="POST">
-                    <input type="hidden" name="productId" value="@Model.EProduct.Id" />
-                    <input type="hidden" name="quantity" value="1" />
-
-                    <div class="input-group cart-group">
-                        <button type="submit" name="action" value="addToCart" class="btn btn-outline-primary btn-md add-to-cart-btn">
-                            <i class="fas fa-cart-plus"></i> Add To Cart
-                        </button>
-                    </div>
-
-                    <div class="input-group cart-group ">
-                        <button type="submit" name="action" value="buyNow" class=" btn-md btn-buynow">
-                            <i class="fa-solid fa-basket-shopping"></i> Şimdi Al
-                        </button>
-                    </div>
-                </form>
+                <a href="#" class="btn btn-link category-link">@category.CategoryName</a>
             }
+                <div class="product-price-section mb-3">
+                    <h4 class="btn-price">@Model.EProduct.Price TL</h4>
+                    <p class="tab-on">@Model.EProduct.Brand</p>
+                    <p class="tab-on"> @Html.Raw(Model.EProduct.Description)</p>
+                    @if (!User.IsInRole("admin") && User.Identity.IsAuthenticated)
+                    {
+                        <form asp-controller="Basket" asp-action="AddToBasket" method="POST">
+                            <input type="hidden" name="productId" value="@Model.EProduct.Id" />
+                            <input type="hidden" name="quantity" value="1" />
 
+                            <div class="input-group cart-group">
+                            <button type="submit" name="action" value="addToCart" class="btn-md add-to-cart">
+                                    <i class="fas fa-cart-plus"></i> Add To Cart
+                                </button>
+                            </div>
+                            <div class="input-group cart-group ">
+                                <button type="submit" name="action" value="buyNow" class=" btn-md btn-buynow">
+                                    <i class="fa-solid fa-basket-shopping"></i> Şimdi Al
+                                </button>
+                            </div>
+                        </form>
+
+                    }
+
+                </div>
         </div>
-    </div>
 </div>
 
 <div class="row">
