@@ -227,7 +227,7 @@ namespace InstrumentHub.WebUI.Controllers
 			string body = $"Parolanızı yenilemek için linke <a href='{activeUrl}'> tıklayınız.</a>";
 
 			// Email Service 
-			MailHelper.SendEmail(body, email, "ETİCARET Parola Yenileme");
+			MailHelper.SendEmail(body, email, "InstrumentHub Parola Yenileme");
 
 			TempData.Put("message", new ResultMessageModel()
 			{
@@ -365,7 +365,7 @@ namespace InstrumentHub.WebUI.Controllers
 				});
 				string siteUrl = "https://localhost:7076";
 				string resetUrl = $"{siteUrl}{callbackUrl}";
-				//send email
+				
 				string body = $"Şifrenizi yenilemek için linke <a href='{resetUrl}'> tıklayınız.</a>";
 
 				MailHelper.SendEmail(body, model.Email, "ETRADE Şifre Sıfırlama");
