@@ -16,6 +16,7 @@ namespace InstrumentHub.WebUI.Controllers
 			_eproductServices = eProductServices;
 			_commentServices = commentServices;
 		}
+
 		[Route("eproducts/{division?}")]
 		public IActionResult Liste(string division, int page = 1)
 		{
@@ -24,13 +25,13 @@ namespace InstrumentHub.WebUI.Controllers
 				return NotFound(); // division bilgisi boş ise 404 döndür
 			}
 
-			const int pageSize = 5;
+			const int pageSize = 15; // sayfa açıldığında göreceğimiz ürün sayısı bukadardır
 
 			var eproducts = new EProductListModel()
 			{
 				PageInformation = new PageInformation()
 				{
-					ToatalItems = _eproductServices.GetCountByDivision(division),
+					ToatalItems = _eproductServices.GetCountByDivision(division), 
 					ItemsPerPage = pageSize,
 					CurrentPage = page,
 					CurrentDivision = division
@@ -53,13 +54,13 @@ namespace InstrumentHub.WebUI.Controllers
 			EProduct eproduct = _eproductServices.GetEProductDetail(id.Value);
 			if (eproduct == null)
 			{
-				return NotFound();
+				return NotFound();//id yoksa 404 döndürmek için
 			}
 
 			double avarageRaiting = _commentServices.GetAverageRating(id.Value);
 			ViewBag.AvarageRaiting = avarageRaiting;
 
-			// Aynı division'a ait diğer ürünleri getirirmesi için buraya ekledim
+			// Aynı division'a ait diğer ürünleri getirirmesi için bir where sorgusu ekledim
 			var relatedProducts = _eproductServices.GetEProductByDivision(eproduct.ProductDivisions.FirstOrDefault()?.Division.CategoryName, page: 1, pageSize: 4)
 								.Where(p => p.Id != id.Value)
 								.ToList();

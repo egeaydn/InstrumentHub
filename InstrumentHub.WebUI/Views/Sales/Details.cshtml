@@ -74,15 +74,16 @@
 		font-size: 1rem;
 		color: orange;
 		border: none;
-		border-radius: 8px;
-		margin-right: 10px;
 		padding: 12px 18px;
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 		text-decoration: none;
+		font-family: 'Arial', sans-serif;
+		font-weight: bold;
+        margin-left:-15px;
     }
 
 		.category-link:hover{
-            color: #ff6600;
+            color: #D98324;
 		}
 
     .nav-tabs {
@@ -260,6 +261,17 @@
             transform: scale(1.05);
         }
 
+    .add-to-cart-similar-product{
+        font-size: 14px;
+        font-weight: bold;
+        background: orange;
+        color: white;
+        border: none;
+        padding: 10px;
+        transition: 0.3s;
+        width: 100%;
+    }
+
     .rating {
         color: gold;
         font-size: 14px;
@@ -396,7 +408,7 @@
                         <form asp-controller="Basket" asp-action="AddToBasket" method="post" class="d-inline">
                             <input type="hidden" name="productId" value="@product.Id" />
                             <input type="hidden" name="quantity" value="1" />
-                            <button type="submit" class="add-to-cart">
+                            <button type="submit" class="add-to-cart-similar-product">
                                 <i class="fas fa-shopping-cart"></i> Sepete Ekle
                             </button>
                         </form>

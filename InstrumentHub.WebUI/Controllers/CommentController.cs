@@ -86,33 +86,6 @@ namespace InstrumentHub.WebUI.Controllers
 			return View(model);
 		}
 
-
-
-
-		public IActionResult Edit(int? id, string text)
-		{
-
-			if (id is null)
-			{
-				return BadRequest();
-			}
-
-			Comment comment = _commentServices.GetById(id.Value);
-
-			if (comment is null)
-			{
-				return NotFound();
-			}
-
-			comment.CommentText = text;
-			comment.CommentCreateOn = DateTime.Now;
-
-			_commentServices.Update(comment);
-
-			return Json(new { result = true });
-
-		}
-
 		public IActionResult Delete(int? id)
 		{
 

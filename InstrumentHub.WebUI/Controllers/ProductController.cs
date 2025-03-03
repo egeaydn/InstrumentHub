@@ -23,7 +23,7 @@ namespace InstrumentHub.WebUI.Controllers
 			return View(model);
 		}
 
-		// Belirli fiyat aralığında ürünleri getir
+		// Belirli fiyat aralığında ürünleri getirmke için
 		public IActionResult GetByPriceRange(decimal minPrice, decimal maxPrice)
 		{
 			if (minPrice > maxPrice)

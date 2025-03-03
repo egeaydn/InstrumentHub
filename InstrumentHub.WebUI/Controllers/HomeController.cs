@@ -30,6 +30,11 @@ namespace InstrumentHub.WebUI.Controllers
 				EProducts = products,
 			});
 		}
+
+		/*bu kjýsýmda home sayfasýna eklediðim fiyat aralýðýna göre ürünleri getirme iþlemi yapýlýyor.
+		  katmanlar arasý baðýmlýlýðý azaltmak için bu iþlemi controllerda yapmak yerine service katmanýnda yapmak daha mantýklýydý
+			öyle aptýk bu alddaki kýosmda home sayfamýzdaki fiyat filtreleme kýsmýnýn controllerý
+		 */
 		public IActionResult FilterByPrice(decimal minPrice, decimal maxPrice)
 		{
 			if (minPrice > maxPrice)
