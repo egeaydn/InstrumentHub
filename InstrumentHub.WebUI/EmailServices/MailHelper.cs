@@ -1,62 +1,75 @@
 ﻿using System.Net.Mail;
 using System.Net;
+using Microsoft.Extensions.Configuration;
 
 namespace InstrumentHub.WebUI.EmailServices
 {
-	public static class MailHelper
+	public class MailHelper
 	{
+		private readonly IConfiguration _configuration;
 
-		public static bool SendEmail(string body, string to, string subject, bool isHtml = true)
+		// Bağımlılık enjeksiyonu ile IConfiguration'ı alıyoruz
+		public MailHelper(IConfiguration configuration)
+		{
+			_configuration = configuration;
+		}
+
+		// Tek alıcıya mail göndermeyi sağlayan yardımcı metot.
+		public bool SendEmail(string body, string to, string subject, bool isHtml = true)
 		{
 			return SendEmail(body, new List<string> { to }, subject, isHtml);
 		}
 
 		// Birden fazla alıcıya mail göndermeyi sağlayan asıl metot.
-		private static bool SendEmail(string body, List<string> to, string subject, bool isHtml)
+		private bool SendEmail(string body, List<string> to, string subject, bool isHtml)
 		{
 			bool result = false; // Mail gönderim sonucunu burada tutuyoruz
 
 			try
 			{
+				// SMTP ayarlarını appsettings.json'dan okuyoruz
+				var smtpSettings = _configuration.GetSection("SmtpSettings");
+
 				var message = new MailMessage(); // Yeni bir e-posta mesajı nesnesi oluşturuluyor burada
 
 				// Gönderen e-posta adresi belirleniyor.
-				message.From = new MailAddress("instrumenthubmailservices@gmail.com");
+				message.From = new MailAddress(smtpSettings["Username"]);
 
-				// Alıcı adresler mesajın To kısmına ekiyorum
+				// Alıcı adresleri mesajın To kısmına ekliyoruz
 				to.ForEach(x =>
 				{
 					message.To.Add(new MailAddress(x));
 				});
 
-				message.Subject = subject;  
-				message.Body = body;       
-				message.IsBodyHtml = isHtml; 
+				message.Subject = subject;
+				message.Body = body;
+				message.IsBodyHtml = isHtml;
 
-				// SMTP istemcisi oluşturuluyor ve Gmail'in SMTP sunucusunu kullanıyoruz
-				using (var smtp = new SmtpClient("smtp.gmail.com", 587))
+				// SMTP istemcisi oluşturuluyor ve yapılandırılıyor
+				using (var smtp = new SmtpClient(smtpSettings["Host"], int.Parse(smtpSettings["Port"])))
 				{
-					smtp.EnableSsl = true; // ssl aktif ediyoruz
+					smtp.EnableSsl = bool.Parse(smtpSettings["EnableSsl"]); // SSL kullanımı etkinleştiriliyor
 
-					// gmail adı ve şifre belirleniyor şifre ilgili google hesabımızda güvenlik ayarlarının olduğu kısımda
-					// uygulama şifreleri kısmından alınabilir ve şifre tek seferlik gösterilir
-					smtp.Credentials = new NetworkCredential("instrumenthubmailservices@gmail.com", "dgjk jxrg gcjh tjrk" +
-						"");
+					//  kimlik doğrulama bilgilerini appsettings.json'dan alıyoruz güvenlik için
+					smtp.Credentials = new NetworkCredential(
+						smtpSettings["Username"],
+						smtpSettings["Password"]
+					);
 
-					smtp.UseDefaultCredentials = false; 
+					smtp.UseDefaultCredentials = false;
 
-					smtp.Send(message); // E-posta yı gönderiyoruz
+					smtp.Send(message); // E-postayı gönderiyoruz
 					result = true; // Mail gönderildiği için sonucu true olarak döndürüyoruz
 				}
 			}
 			catch (Exception e)
 			{
-				// 
-				Console.WriteLine(e);
+				// Hata oluştuğunda hatayı loglama veya hata mesajını saklama işlemi burada yapılabilir
+				Console.WriteLine($"Email gönderme hatası: {e.Message}");
 				result = false;
 			}
 
-			return result; 
+			return result;
 		}
 	}
 }
