@@ -3,7 +3,6 @@ using Instrument.Business.Concrate;
 using Instrument.WebUI.Identity;
 using InstrumentHub.DataAccess.Abstract;
 using InstrumentHub.DataAccess.Concrate.EfCore;
-using InstrumentHub.WebUI.EmailServices;
 using InstrumentHub.WebUI.MidleWares;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,15 +23,6 @@ builder.Services.AddIdentity<AplicationUser, IdentityRole>()
 // Seed Identity
 var userManager = builder.Services.BuildServiceProvider().GetService<UserManager<AplicationUser>>();
 var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<IdentityRole>>();
-
-var builderemail = WebApplication.CreateBuilder(args);
-
-builderemail.Services.AddSingleton<IConfiguration>(builderemail.Configuration);
-builderemail.Services.AddTransient<MailHelper>();
-
-var app = builderemail.Build();
-
-
 
 builder.Services.Configure<IdentityOptions>(options =>
 {

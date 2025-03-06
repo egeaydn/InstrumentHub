@@ -29,7 +29,7 @@ namespace Instrument.WebUI.Identity
 				{
 					await userManager.AddToRoleAsync(user, role);
 				}
-
+				// burada kodumuzu ilk başlattığımızda admin kullanıcısını oluşturuyor olmalıyız fakat benim kodumda şuanda bir hata var ve bu hata düzeltilmelidir.
 			}
 		}
 	}
