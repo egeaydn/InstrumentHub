@@ -2,6 +2,10 @@
 @using InstrumentHub.Entites
 @model EProductListModel
 
+@{
+    ViewData["Title"] = "InstrumentHub";
+}
+
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link href="~/css/index.css" rel="stylesheet" />
 
@@ -172,9 +176,10 @@
         <div class="footer-section">
             <h4>Bağlantılar</h4>
             <ul>
-                <li><a href="#">Hakkımızda</a></li>
-                <li><a href="#">İletişim</a></li>
-                <li><a href="#">SSS</a></li>
+                <li><a asp-action="About" asp-controller="Tools">Hakkımızda</a></li>
+                <li><a asp-action="Contact" asp-controller="Tools">İletişim</a></li>
+                <li>instrumenthubmailservices@gmail.com</li>
+                <li><a asp-action="SSS" asp-controller="Tools">SSS</a></li>
             </ul>
         </div>
         <div class="footer-section">

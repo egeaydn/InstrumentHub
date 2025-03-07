@@ -50,10 +50,10 @@
         margin-bottom: 10px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2; /* Maksimum 2 satır göster */
+        -webkit-line-clamp: 2; 
         overflow: hidden;
-        max-height: 2.8em; /* 2 satır yüksekliği kadar alan belirle */
-        line-height: 1.4em; /* Satır yüksekliği */
+        max-height: 2.8em; 
+        line-height: 1.4em; 
         text-overflow: ellipsis;
         white-space: normal;
     }
@@ -134,7 +134,7 @@
 </style>
 
 <div class="col-md-5 col-lg-4 mt-3">
-    <!-- Genişliği artırmak için col-md-5 ve col-lg-4 kullanıldı -->
+    <!-- Genişliği artırmak için col-md-5 ve col-lg-4 kullandım -->
     <div class=" product-card ">
         <a asp-controller="Sales" asp-action="Details" asp-route-id="@Model.Id" target="_blank" class="text-decoration-none">
             <div class="card-img-wrapper">
@@ -155,7 +155,7 @@
                 }
                 <p class="product-description">@plainText</p> 
                 @*
-                    yukarıda descriptionun içinde gelen hyml etiketlerinin temizlemesini saglıyor
+                    yukarıda descriptionun içinde gelen html etiketlerinin temizlemesini saglıyor
                 *@
     
                 <p class="product-brand">@Model.Brand</p>

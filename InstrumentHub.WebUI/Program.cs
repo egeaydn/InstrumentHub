@@ -20,7 +20,7 @@ builder.Services.AddIdentity<AplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationIdentityDbContext>()
 .AddDefaultTokenProviders();
 
-// Seed Identity
+// Seed Identity çalýþmýyor
 var userManager = builder.Services.BuildServiceProvider().GetService<UserManager<AplicationUser>>();
 var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<IdentityRole>>();
 
@@ -49,7 +49,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 	options.LogoutPath = "/account/logout";
 	options.AccessDeniedPath = "/account/accessdenied";
 	options.SlidingExpiration = true;
-	options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+	options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
 	options.Cookie = new CookieBuilder
 	{
 		HttpOnly = true,
@@ -73,11 +73,9 @@ builder.Services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.Compa
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
 	app.UseExceptionHandler("/Home/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
 }
 
@@ -139,6 +137,6 @@ app.UseEndpoints(endpoints =>
 }
 );
 
-//SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait();
+//SeedIdentity.Seed(userManager, roleManager, app.Configuration).Wait(); çalýþmadýðý için yorum satýrýnda býraktým
 
 app.Run();

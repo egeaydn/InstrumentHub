@@ -19,7 +19,6 @@
                 var collapseId = "orderCollapse" + orderIndex;
                 <div class="col-md-6 col-lg-4">
                     <div class="card order-card">
-                        <!-- Kart Başlığı: Tıklanabilir başlık ile collapse açma -->
                         <div class="card-header order-card-header"
                              data-bs-toggle="collapse"
                              data-bs-target="#@collapseId"
@@ -30,7 +29,6 @@
                                 <span>@order.OrderState</span>
                             </div>
                         </div>
-                        <!-- Açılır içerik -->
                         <div id="@collapseId" class="collapse">
                             <div class="card-body order-card-body">
                                 @if (order.OrderItems != null && order.OrderItems.Any())
@@ -52,7 +50,6 @@
                                     <p>No items in this order.</p>
                                 }
                             </div>
-                            <!-- Kart Alt Bilgisi: Sipariş tarihi, toplam ve müşteri bilgileri -->
                             <div class="card-footer order-card-footer">
                                 <div class="footer-top">
                                     <span>Order Date: @order.OrderDate.ToString("dd/MM/yyyy")</span>

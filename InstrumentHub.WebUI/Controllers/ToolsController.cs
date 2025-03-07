@@ -19,5 +19,9 @@ namespace InstrumentHub.WebUI.Controllers
 		{
 			return View();
 		}
+		public IActionResult SSS()
+		{
+			return View();
+		}
 	}
 }

@@ -1,18 +1,15 @@
-﻿/* Renk ve stil değişkenleri */
-:root {
+﻿:root {
     --primary-color: #007bff;
     --secondary-color: #0056b3;
     --light-color: #f8f9fa;
     --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Sayfa genelinde arka plan */
 body {
     background: linear-gradient(135deg, #F7F7F7, #a6c1ee);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Kart (order-card) temel ayarları */
 .order-card {
     margin-bottom: 1.5rem;
     border: none;
@@ -28,7 +25,6 @@ body {
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     }
 
-/* Kart başlığı (header) dinamik ve gradient arka plan */
 .order-card-header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: #fff;
@@ -55,12 +51,10 @@ body {
         background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     }
 
-/* Kart gövdesi (body) */
 .order-card-body {
     padding: 1.5rem;
     background: #fff;
 }
-/* Her ürün satırını (order-item) düzenleme */
 .order-item {
     display: flex;
     align-items: center;
@@ -87,7 +81,6 @@ body {
         color: #333;
     }
 
-/* Kart alt bilgisi (footer) */
 .order-card-footer {
     background: var(--light-color);
     padding: 1rem 1.5rem;

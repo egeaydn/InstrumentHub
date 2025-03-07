@@ -1,0 +1,83 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background: #fffaf3;
+    color: #333;
+}
+
+.wrapper {
+    max-width: 70%;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+    .wrapper > h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        color: #d67d3e;
+        margin-bottom: 1.5rem;
+    }
+
+    .wrapper > p {
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+.faq {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+    .faq.active {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+.accordion {
+    background: #ffebcd;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .accordion:hover,
+    .accordion.active {
+        background: #f7d7a8;
+    }
+
+    .accordion i {
+        font-size: 1.4rem;
+        transition: transform 0.3s;
+    }
+
+    .accordion.active i {
+        transform: rotate(180deg);
+    }
+
+.pannel {
+    padding: 1rem 1.5rem;
+    background: #fffaf3;
+    color: #444;
+    font-size: 1rem;
+    display: none;
+    transition: max-height 0.3s ease-out;
+}

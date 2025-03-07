@@ -1,10 +1,7 @@
-﻿<style >
-/* Genel Ayarlar */
-body {
+﻿body {
     font-family: 'Arial', sans-serif;
 }
 
-/* Yorum Giriş Alanı */
 .comment-input-container {
     margin-bottom: 20px;
 }
@@ -40,7 +37,6 @@ body {
         background-color: #218838;
     }
 
-/* Yorum Kartları */
 .comment-card {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -80,8 +76,6 @@ body {
     gap: 10px;
     justify-content: flex-end;
 }
-
-/* Butonlar */
 .edit-comment-btn,
 .delete-comment-btn {
     border: none;
@@ -110,7 +104,6 @@ body {
         transform: scale(1.05);
     }
 
-/* Uyarı Mesajı */
 .no-comments-warning {
     background-color: #fff3cd;
     border: 1px solid #ffeeba;
@@ -121,7 +114,6 @@ body {
     padding: 10px;
 }
 
-/* Mobil Uyum */
 @media (max-width: 768px) {
     .comment-input-wrapper {
         flex-direction: column;
@@ -135,4 +127,3 @@ body {
     }
 }
 
-</style >

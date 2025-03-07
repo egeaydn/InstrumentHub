@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Sıkça Sorlan Sorular";
+}
+
+<head>
+    <link href="~/css/sss.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <p>Your Ultimate Musical Instrument Marketplace</p>
+        <h1>Frequently Asked Questions</h1>
+
+        <div class="faq">
+            <button class="accordion">
+                What is InstrumentHub?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+                <p>
+                    InstrumentHub is an online marketplace where you can buy, sell, and explore a wide variety of musical instruments and accessories.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <button class="accordion">
+                How can I buy an instrument on InstrumentHub?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+                <p>
+                    You can browse our catalog, select the instrument you like, and proceed with secure checkout. We offer multiple payment methods for your convenience.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <button class="accordion">
+                Can I sell my own instruments here?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+                <p>
+                    Yes! You can create a seller account and list your instruments with detailed descriptions and images.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <button class="accordion">
+                Do you offer any warranties on purchases?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+                <p>
+                    Warranty policies vary by seller. Please check individual product listings for warranty details.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <button class="accordion">
+                How can I contact customer support?
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pannel">
+                <p>
+                    You can reach our support team through the Contact Us page or email us at support@instrumenthub.com.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            this.parentElement.classList.toggle("active");
+
+            var pannel = this.nextElementSibling;
+
+            if (pannel.style.display === "block") {
+              pannel.style.display = "none";
+            } else {
+              pannel.style.display = "block";
+            }
+          });
+        }
+    </script>
+</body>
+</html>

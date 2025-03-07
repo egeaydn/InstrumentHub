@@ -34,7 +34,6 @@ header {
         font-size: 1.25rem;
         opacity: 0.9;
     }
-    /* Animasyonlu dalga efekti */
     header::after {
         content: "";
         position: absolute;
@@ -45,13 +44,11 @@ header {
         background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMHB4IiBoZWlnaHQ9IjEwMHB4IiB2aWV3Qm94PSIwIDAgMTIwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDkuMzQzYzYwLjMxMSAxMy45NDYgMTI3LjM2NCAzNy4wNjQgMTgyLjI5NiAxMjguNjk1IDU1LjA5NiA5MS42MjUgMjAzLjY3NyAyNS45NjkgMjQ3LjE5NiAxMjguNjk1IDQ0LjkyNiA5MC4wMzkgNjQuNjQzIDExNy42MjUgNjQuNjQzIDUwLjQ1NyAwIDk1LjQyOS0xMy43NTYgMTMxLjQ0Mi0zNy41NjggMTgyLjI5Ni0xMjYuOTk1IDQ1Ljg3Ni0yMDIuNDc2LTU5LjQwNC0yNDcuNDI5LTEyOC42OTVDMzcuMzc0IDg2LjM5OCAwIDU0LjQ4MSAwIDQ5LjM0M3oiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuNCIvPjwvc3ZnPg==') repeat-x bottom;
         transform: translateY(1px);
     }
-/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
 }
-/* About Bölümü */
 .about-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -98,7 +95,6 @@ header {
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
-/* Neden InstrumentHub? Bölümü */
 .features {
     text-align: center;
     margin-top: 3rem;
@@ -141,7 +137,6 @@ header {
         font-size: 1rem;
         color: #555;
     }
-/* Footer */
 footer {
     background: #333;
     color: #fff;
@@ -149,7 +144,6 @@ footer {
     padding: 1rem 0;
     font-size: 0.9rem;
 }
-/* Responsive */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2.5rem;
