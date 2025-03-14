@@ -6,48 +6,57 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InstrumentHub.WebUI.Controllers
 {
+	// Ana sayfa iÅŸlemlerini yÃ¶neten controller sÄ±nÄ±fÄ±
 	public class HomeController : Controller
 	{
+		// ÃœrÃ¼n iÅŸlemlerini yÃ¶neten servis arayÃ¼zÃ¼
 		private IEProductServices _productServices;
 
+		// Dependency injection ile servis baÄŸÄ±mlÄ±lÄ±ÄŸÄ±nÄ±n Ã§Ã¶zÃ¼mlenmesi
 		public HomeController(IEProductServices productServices)
 		{
 			_productServices = productServices;
 		}
 
+		// Ana sayfa gÃ¶rÃ¼nÃ¼mÃ¼nÃ¼ dÃ¶ndÃ¼ren action metodu
+		// TÃ¼m Ã¼rÃ¼nleri listeler
 		public IActionResult Index()
 		{
 			var products = _productServices.GetAll();
 
-
+			// ÃœrÃ¼n listesi boÅŸ ise yeni liste oluÅŸtur
 			if (products == null || !products.Any())
 			{
 				products = new List<EProduct>();
 			}
 
+			// ÃœrÃ¼nleri view model iÃ§inde gÃ¶rÃ¼nÃ¼me gÃ¶nder
 			return View(new EProductListModel()
 			{
 				EProducts = products,
 			});
 		}
 
-		/*bu kjısımda home sayfasına eklediğim fiyat aralığına göre ürünleri getirme işlemi yapılıyor.
-		  katmanlar arası bağımlılığı azaltmak için bu işlemi controllerda yapmak yerine service katmanında yapmak daha mantıklıydı
-			öyle aptık bu alddaki kıosmda home sayfamızdaki fiyat filtreleme kısmının controllerı
+		/*bu kjsmda home sayfasna eklediim fiyat aralna gre ï¿½rï¿½nleri getirme iï¿½lemi yapï¿½lï¿½yor.
+		  katmanlar arasï¿½ baï¿½ï¿½mlï¿½lï¿½ï¿½ï¿½ azaltmak iï¿½in bu iï¿½lemi controllerda yapmak yerine service katmanï¿½nda yapmak daha mantï¿½klï¿½ydï¿½
+			ï¿½yle aptï¿½k bu alddaki kï¿½osmda home sayfamï¿½zdaki fiyat filtreleme kï¿½smï¿½nï¿½n controllerï¿½
 		 */
 		public IActionResult FilterByPrice(decimal minPrice, decimal maxPrice)
 		{
+			// Fiyat aralÄ±ÄŸÄ± kontrolÃ¼
 			if (minPrice > maxPrice)
 			{
-				TempData["Error"] = "Minimum fiyat, maksimum fiyattan büyük olamaz.";
+				TempData["Error"] = "Minimum fiyat, maksimum fiyattan bÃ¼yÃ¼k olamaz.";
 				return RedirectToAction("Index");
 			}
 
+			// Fiyat aralÄ±ÄŸÄ±na gÃ¶re Ã¼rÃ¼nleri getir
 			var productsInRange = _productServices.GetProductsByPriceRange(minPrice, maxPrice);
 
+			// ÃœrÃ¼n bulunamadÄ±ysa hata mesajÄ± gÃ¶ster
 			if (productsInRange == null || productsInRange.Count == 0)
 			{
-				TempData["Error"] = "Bu fiyat aralığında ürün bulunamadı.";
+				TempData["Error"] = "Bu fiyat aralÄ±ÄŸÄ±nda Ã¼rÃ¼n bulunamadÄ±.";
 			}
 
 			var model = new EProductListModel
@@ -55,7 +64,7 @@ namespace InstrumentHub.WebUI.Controllers
 				EProducts = productsInRange
 			};
 
-			return View("Index", model);  // **Home/Index'e yönlendiriyoruz**
+			return View("Index", model);  // **Home/Index'e ynlendiriyoruz**
 		}
 	}
 }
