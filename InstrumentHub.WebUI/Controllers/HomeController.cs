@@ -38,8 +38,8 @@ namespace InstrumentHub.WebUI.Controllers
 		}
 
 		/*bu kjsmda home sayfasna eklediim fiyat aralna gre �r�nleri getirme i�lemi yap�l�yor.
-		  katmanlar aras� ba��ml�l��� azaltmak i�in bu i�lemi controllerda yapmak yerine service katman�nda yapmak daha mant�kl�yd�
-			�yle apt�k bu alddaki k�osmda home sayfam�zdaki fiyat filtreleme k�sm�n�n controller�
+		  katmanlar arası ba��ml�l��� azaltmak için bu işlemi controllerda yapmak yerine service katman�nda yapmak daha mant�kl�yd�
+			öyle yaptık bu alddaki k�osmda home sayfam�zdaki fiyat filtreleme k�sm�n�n controller�
 		 */
 		public IActionResult FilterByPrice(decimal minPrice, decimal maxPrice)
 		{

@@ -43,7 +43,11 @@ namespace InstrumentHub.DataAccess.Concrate.EfCore
 		{
 			using (var context = new DataContext())
 			{
-				var eproducts = context.EProducts.Include("Images").AsQueryable();
+				var eproducts = context.EProducts
+					.Include("Images")
+					.Include(i => i.ProductDivisions)
+					.ThenInclude(i => i.Division)
+					.AsQueryable();
 
 				if (!string.IsNullOrEmpty(division) && division != "all")
 				{
